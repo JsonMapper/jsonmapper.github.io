@@ -6,3 +6,14 @@
 /vendor/
 /composer.lock
 /.phpunit.result.cache
+<<<<<<< HEAD
+/build/
+/.idea/
+
+# Ignore files from the gh-pages
+/node_modules/
+/.DS_Store
+/.jekyll-cache
+/_site
+=======
+>>>>>>> gh-pages
