@@ -14,5 +14,3 @@ exclude:
   - assets
   - node_modules
   - .idea
-
-baseurl: /JsonMapper
