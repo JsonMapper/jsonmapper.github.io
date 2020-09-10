@@ -7,6 +7,7 @@ Usage:
   Setup: '/docs/usage/setup'
 
 Guides:
+  Getting started: '/docs/guides/getting-started'
   Laravel Usage: '/docs/guides/laravel-usage'
   Symfony Usage: '/docs/guides/symfony-usage'
 
@@ -17,6 +18,8 @@ Middleware:
   Final callback: '/docs/middleware/final-callback'
   Namespace resolver: '/docs/middleware/namespace-resolver'
   PHP 7.4 Typed properties: '/docs/middleware/typed-properties'
+  Laravel Eloquent: '/docs/middleware/laravel-eloquent'
+
 
 Advanced Usage:
   Performance: '/docs/advanced/performance'
