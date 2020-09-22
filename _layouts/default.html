@@ -31,12 +31,51 @@
     <meta name="og:site_name" content="JsonMapper">
     <meta name="og:type" content="website">
 </head>
-<body class="antialiased text-base pt-12 leading-normal bg-grey-100 p-4 md:w-2/3 lg:w-2/3 mx-auto  text-gray-700">
+<body class="antialiased text-base leading-normal bg-grey-100 p-4 md:w-2/3 lg:w-2/3 mx-auto  text-gray-700">
     <div class="flex flex-col">
-        <header class="pb-2 border-b-2 border-yellow-500">
-            <a href="{{ '/' | relative_url }}">
-                <img src="{{ '/images/jsonmapper.png' | relative_url }}"/>
-            </a>
+        <header>
+            <div class="flex items-center justify-between p-4 border-b-2 border-yellow-500">
+                <div>
+                    <a href="{{ '/' | relative_url }}">
+                        <img src="{{ '/images/jsonmapper.png' | relative_url }}"/>
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button class="flex flex-col" onclick="navToggle();">
+                        <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24" id="menu-closed">
+                            <path fill-rule="evenodd"
+                                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                        </svg>
+
+                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="menu-open">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden px-2 pt-2 pb-4 border-b-2 border-yellow-500" id="menuItems">
+                {% for section in site.data.menu %}
+                <h2 class="tracking-wide text-xs leading-loose uppercase pt-1">{{ section[0] }}</h2>
+                {% for link in section[1] %}
+                <a href="{{ link[1] | relative_url }}" class="block rounded px-2 py-1 mt-1 hover:bg-yellow-500">{{ link[0] }}</a>
+                {% endfor %}
+                {% endfor %}
+                <div class="flex justify-start items-center mt-8">
+                    <a class="block flex items-center hover:text-gray-700 mr-5" href="https://twitter.com/JsonMapper" target="_blank">
+                        <svg class="fill-current w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <title>Twitter</title>
+                            <path d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a class="block flex items-center hover:text-gray-700 mr-5" href="https://github.com/JsonMapper/JsonMapper" target="_blank">
+                        <svg class="fill-current w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <title>GitHub</title>
+                            <path d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </header>
         <main class="mt-2">
             <div class="flex flex-row h-screen ">
@@ -76,5 +115,16 @@
 
         </footer>
     </div>
+    <script>
+        function navToggle() {
+            var nav = document.getElementById('menuItems');
+            var menuOpen = document.getElementById('menu-open');
+            var menuClosed = document.getElementById('menu-closed');
+
+            nav.classList.toggle('hidden');
+            menuOpen.classList.toggle('hidden');
+            menuClosed.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
