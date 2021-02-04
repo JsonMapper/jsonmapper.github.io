@@ -17,7 +17,9 @@ Middleware:
   DocBlock annotations: '/docs/middleware/doc-block-annotations'
   Final callback: '/docs/middleware/final-callback'
   Namespace resolver: '/docs/middleware/namespace-resolver'
+  Rename: '/docs/middleware/rename'
   PHP 7.4 Typed properties: '/docs/middleware/typed-properties'
+  PHP 8.0 Attributes: '/docs/middleware/attributes'
   Laravel Eloquent: '/docs/middleware/laravel-eloquent'
 
 
