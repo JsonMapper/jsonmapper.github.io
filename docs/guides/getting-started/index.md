@@ -42,5 +42,8 @@ $mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $chuckNorrisFact = new ChuckNorrisFact();
 
 // Map the data using JsonMapper
-$mapper->map($json, $chuckNorrisFact);
+$mapper->mapObject($json, $chuckNorrisFact);
+
+// Or alternatively leave the json decoding to JsonMapper:
+$mapper->mapObjectFromString($data, $chuckNorrisFact);
 ```
