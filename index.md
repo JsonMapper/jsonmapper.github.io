@@ -13,7 +13,7 @@ $mapper->mapObject(json_decode('{ "name": "John Doe" }'), $object);
 echo $object->getName(); // "John Doe"
 ```
 
-# Why use JsonMapper
+## Why use JsonMapper
 Continuously mapping your JSON responses to your own objects becomes tedious and is error prone. Not mentioning the
 tests that needs to be written for said mapping.
 
