@@ -12,10 +12,12 @@ _This middleware is part of both the default and best fit factory methods as it 
 ```php
 <?php
 
+use App\Api\Joke\Response;
+
 # The namespace resolver middleware is included in the default and best fit of JsonMapper.
 $mapper = (new \JsonMapper\JsonMapperFactory())->default();
 
-$object = new Joke();
+$object = new Response();
 $jsonString = file_get_contents('https://api.chucknorris.io/jokes/search?query=programming');
 
 $mapper->mapObject($jsonString, $object);
