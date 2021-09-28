@@ -25,3 +25,5 @@ Middleware:
 
 Advanced Usage:
   Performance: '/docs/advanced/performance'
+  Interfaces: '/docs/advanced/interfaces'
+  Abstract classes:  '/docs/advanced/abstracts'
