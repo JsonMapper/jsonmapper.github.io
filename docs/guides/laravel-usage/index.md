@@ -35,21 +35,24 @@ class ApiClient
 {
     private JsonMapperInterface $mapper;
     
-    public function __construct(private JsonMapperInterface $mapper) {}
+    public function __construct(
+        private JsonMapperInterface $mapper
+    ) {
+    }
     
     public function fetchJokes(): Collection
     {
-        $data = file_get_contents('https://official-joke-api.appspot.com/jokes/ten');
+        $data = file_get_contents('https://jsonplaceholder.typicode.com/todos');
         
-        return $this->mapper->mapToCollectionFromString($data, new Joke());
+        return $this->mapper->mapToCollectionFromString($data, new Todo());
     }
 }
 
-class Joke
+class Todo
 {
+    public int $userId;
     public int $id;
-    public string $type;
-    public string $setup;
-    public string $punchline;
+    public string $title;
+    public bool $completed;
 }
 ```
