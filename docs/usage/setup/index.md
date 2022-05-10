@@ -3,6 +3,7 @@ permalink: /docs/usage/setup
 title: Setup
 ---
 
+# Quick and easy setup
 Setting up JsonMapper for your project is simple. JsonMapper comes with a factory that
 offers three methods to create a JsonMapper instance.
 
@@ -24,3 +25,23 @@ $custom = (new \JsonMapper\JsonMapperFactory())->create(
   ...
 );
 ```  
+
+# Tailored setup
+Since version 2.3.0 JsonMapper offers a `JsonMapperBuilder` class which can be used to have a more tailored
+setup of your mapper instance. In version 2.10.0 the `PropertyMapperBuilder` was introduced. Below you can find
+an example that shows how to can create a JsonMapper instance using the builder.
+
+```php
+<?php
+
+$propertyMapperBuilder = PropertyMapperBuilder::create()
+    ->withScalarCaster(new StrictScalarCaster());
+$jsonMapperBuilder = JsonMapperBuilder::create()
+    ->withJsonMapperClass(YourExtendedJsonMapper::class)
+    ->withProperyMapper(new PropertyMapper)
+    ->withDefaultCache(new ArrayCache)
+    ->withDocBlockAnnotationsMiddleware()
+    ->withPropertyMapper($propertyMapperBuilder->build());
+
+$mapper = $jsonMapperBuilder->build();
+```

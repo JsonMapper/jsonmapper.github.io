@@ -25,5 +25,6 @@ Middleware:
 
 Advanced Usage:
   Performance: '/docs/advanced/performance'
+  Casting values: '/docs/advanced/casting-values'
   Interfaces: '/docs/advanced/interfaces'
   Abstract classes:  '/docs/advanced/abstracts'
