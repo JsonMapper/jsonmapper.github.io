@@ -1,6 +1,6 @@
 ---
 permalink: /docs/advanced/abstracts
-title: Interfaces  
+title: Abstract classes  
 ---
 
 JsonMapper can support abstract types but requires a factory to be registered which can map the data to 
