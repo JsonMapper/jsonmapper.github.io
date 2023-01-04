@@ -21,7 +21,8 @@ From that structure a PHP object can be derived
 ```php
 <?php
 
-class ChuckNorrisFact {
+class ChuckNorrisFact
+{
     public string $icon_url;
     public string $id;
     public string $url;
