@@ -28,7 +28,6 @@ echo $object->result[0]->value; // "Chuck Norris insists on strongly-typed progr
 ```php
 <?php
 
-#./App/Api/Joke/Response
 namespace App\Api\Joke;
 
 use App\Dto\Joke;
@@ -45,7 +44,6 @@ class Response
 ```php
 <?php
 
-#./App/Dto/Joke
 namespace App\Dto;
 
 class Joke
