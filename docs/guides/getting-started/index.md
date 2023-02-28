@@ -11,9 +11,9 @@ structure:
 ```json
 {
     "icon_url" : "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
-    "id" : "78KxFWiuT3Wz2TU9n6mZHw",
-    "url" : "",
-    "value" : "will weston has no balls hes a fucking hermaphrodite. Chuck Norris hates hermaphrodites"
+    "id" : "1UfPOdHSTvqXGQWlqfyoKw",
+    "url" : "https://api.chucknorris.io/jokes/1UfPOdHSTvqXGQWlqfyoKw",
+    "value" : "Chuck Norris doesn't get old, he levels up."
 }
 ```
 
@@ -38,7 +38,7 @@ Mapping the JSON to the PHP object is now very simple with the use of JsonMapper
 $data = file_get_contents('https://api.chucknorris.io/jokes/random');
 $json = json_decode($data, false, 512, JSON_THROW_ON_ERROR);
 
-// Create a mapper an Chuck Norris fact
+// Create a mapper for a Chuck Norris fact
 $mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $chuckNorrisFact = new ChuckNorrisFact();
 
