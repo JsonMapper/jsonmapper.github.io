@@ -12,7 +12,7 @@ $mapper = (new JsonMapperFactory())->bestFit();
 $mapper->unshift($middleware);
 $object = new User();
 
-$mapper->mapObject(json_decode('{ "name": "JOHN DOE" }'), $object);
+$mapper->mapObjectFromString('{ "name": "JOHN DOE" }', $object);
 
 echo $object->getName(); // "john doe"
 ```
@@ -33,7 +33,7 @@ $mapper = (new JsonMapperFactory())->bestFit();
 $mapper->unshift($middleware);
 $object = new User();
 
-$mapper->mapObject(json_decode('{ "name": "Sm9obiBEb2U=" }'), $object);
+$mapper->mapObjectFromString('{ "name": "Sm9obiBEb2U=" }', $object);
 
 echo $object->getName(); // "John Doe"
 ```

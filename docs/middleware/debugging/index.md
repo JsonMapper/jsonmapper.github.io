@@ -14,7 +14,7 @@ $logger = new \Psr\Log\Test\TestLogger();
 $mapper->push(new \JsonMapper\Middleware\Debugger($logger));
 
 $object = new \Tests\JsonMapper\Implementation\SimpleObject();
-$mapper->mapObject(json_decode('{ "Name": "John Doe" }'), $object);
+$mapper->mapObjectFromString('{ "Name": "John Doe" }', $object);
 
 var_dump($logger->records);
 ```

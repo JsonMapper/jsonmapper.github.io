@@ -20,7 +20,7 @@ $mapper = (new \JsonMapper\JsonMapperFactory())->default();
 $object = new Response();
 $jsonString = file_get_contents('https://api.chucknorris.io/jokes/search?query=programming');
 
-$mapper->mapObject($jsonString, $object);
+$mapper->mapObjectFromString($jsonString, $object);
 
 echo $object->result[0]->value; // "Chuck Norris insists on strongly-typed programming languages."
 ```
