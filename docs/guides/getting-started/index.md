@@ -43,7 +43,4 @@ $chuckNorrisFact = new ChuckNorrisFact();
 
 // Map the data using JsonMapper
 $mapper->mapObjectFromString($data, $chuckNorrisFact);
-
-// Or alternatively leave the json decoding to JsonMapper:
-$mapper->mapObjectFromString($data, $chuckNorrisFact);
 ```
