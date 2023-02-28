@@ -12,12 +12,11 @@ Saving the data returned from an url as Eloquent models can be achieved with the
 
 $url = 'https://api.opensource.org/licenses/';
 $data = file_get_contents($url);
-$json = json_decode($data, false, 512, JSON_THROW_ON_ERROR);
 
 $mapper = (new JsonMapperFactory())->create();
 $mapper->push(new EloquentMiddleware(new ArrayCache()));
 
-$licenses = $mapper->mapArray($json, new License());
+$licenses = $mapper->mapArrayFromString($data, new License());
 Collection::make($licenses)->each(fn(License $l) => $l->save());
 ```
 

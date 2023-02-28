@@ -23,7 +23,7 @@ $mapper = JsonMapperBuilder::new()
     ->withPropertyMapper(new PropertyMapper($factoryRegistry))
     ->build();
 
-$mapper->mapToClass(json_decode('{ "name": "John Doe" }'), User::class);
+$mapper->mapToClassFromString('{ "name": "John Doe" }', User::class);
 
 echo $object->name; // "John Doe"
 ```

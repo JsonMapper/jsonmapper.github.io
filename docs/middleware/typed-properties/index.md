@@ -20,7 +20,7 @@ $mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $object = new Joke();
 $jsonString = file_get_contents('https://official-joke-api.appspot.com/jokes/random');
 
-$mapper->mapObject($jsonString, $object);
+$mapper->mapObjectFromString($jsonString, $object);
 
 echo $object->setup; // "What do you call a pile of cats?"
 echo $object->punchline; // "A Meowtain."

@@ -8,7 +8,7 @@ JsonMapper is a PHP library that allows you to map a JSON response to your PHP o
 $mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $object = new \Tests\JsonMapper\Implementation\SimpleObject();
 
-$mapper->mapObject(json_decode('{ "name": "John Doe" }'), $object);
+$mapper->mapObjectFromString('{ "name": "John Doe" }', $object);
 
 echo $object->getName(); // "John Doe"
 ```

@@ -16,7 +16,7 @@ $mapper->push(new \JsonMapper\Middleware\CaseConversion(
 ));
 
 $object = new \Tests\JsonMapper\Implementation\SimpleObject();
-$mapper->mapObject(json_decode('{ "Name": "John Doe" }'), $object);
+$mapper->mapObjectFromString('{ "Name": "John Doe" }', $object);
 
 echo $object->getName(); // "John Doe"
 ```  

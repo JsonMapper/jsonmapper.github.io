@@ -23,5 +23,5 @@ $mapper->push(new \JsonMapper\Middleware\FinalCallback(function(
 }));
 
 $object = new \Tests\JsonMapper\Implementation\SimpleObject();
-$mapper->mapObject(json_decode('{ "Name": "John Doe" }'), $object);
+$mapper->mapObjectFromString('{ "Name": "John Doe" }', $object);
 ``` 

@@ -15,7 +15,7 @@ $mapper = (new JsonMapperFactory())->bestFit();
 $mapper->unshift($rename);
 $object = new User();
 
-$mapper->mapObject(json_decode('{ "Full-Name": "John Doe", "Identifier": 42 }'), $object);
+$mapper->mapObjectFromString('{ "Full-Name": "John Doe", "Identifier": 42 }', $object);
 
 echo $object->getId(); // 42
 echo $object->getName(); // "John Doe"

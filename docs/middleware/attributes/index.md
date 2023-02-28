@@ -23,7 +23,7 @@ $mapper = (new JsonMapperFactory())->create(
 );
 $object = new User();
 
-$mapper->mapObjectFromString(json_decode('{ "UserName": "John Doe", "Identifier": 42 }'), $object);
+$mapper->mapObjectFromString('{ "UserName": "John Doe", "Identifier": 42 }', $object);
 
 echo $object->getId(); // 42
 echo $object->getName(); // "John Doe"
