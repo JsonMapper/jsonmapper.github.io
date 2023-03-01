@@ -21,14 +21,17 @@ npm i
 
 # Bundle the CSS in watch mode.
 npm run watch
-# Alternatively, to bundle the CSS without watching.
-npm run prod
 
 # Start Jekyll to serve everything.
-jekyll serve
+# The -l flag will automatically reload the browser after changes.
+jekyll serve -l
 ```
 
 You can now view the site on: http://localhost:4000
+
+Because the site uses Tailwind,
+you also need to run the CSS bundler when changing classes used in the HTML,
+as unused classes will be pruned from the generated stylesheet.
 
 ### Troubleshooting
 
