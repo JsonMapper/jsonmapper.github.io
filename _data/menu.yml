@@ -8,22 +8,22 @@ Usage:
 
 Guides:
   Getting started: '/docs/guides/getting-started'
+  Creating middleware: '/docs/guides/creating-middleware'
   Laravel Usage: '/docs/guides/laravel-usage'
   Symfony Usage: '/docs/guides/symfony-usage'
 
 Middleware:
+  Typed properties: '/docs/middleware/typed-properties'
+  DocBlock annotations: '/docs/middleware/doc-block-annotations'
+  Namespace resolver: '/docs/middleware/namespace-resolver'
+  Constructor support: '/docs/middleware/constructor'
   Case conversion: '/docs/middleware/case-conversion'
   Debugging: '/docs/middleware/debugging'
-  DocBlock annotations: '/docs/middleware/doc-block-annotations'
   Final callback: '/docs/middleware/final-callback'
-  Namespace resolver: '/docs/middleware/namespace-resolver'
   Rename: '/docs/middleware/rename'
   Value transformation: '/docs/middleware/value-transformation'
-  PHP 7.4 Typed properties: '/docs/middleware/typed-properties'
-  PHP 8.0 Attributes: '/docs/middleware/attributes'
-  Constructor support: '/docs/middleware/constructor'
+  PHP Attributes: '/docs/middleware/attributes'
   Laravel Eloquent: '/docs/middleware/laravel-eloquent'
-
 
 Advanced Usage:
   Performance: '/docs/advanced/performance'
