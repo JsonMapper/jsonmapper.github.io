@@ -28,6 +28,9 @@ jekyll serve -l
 
 # Alternatively, you can run Jekyll in Docker:
 docker run --rm -v "$PWD:/srv/jekyll" -p '4000:4000' -it jekyll/jekyll:3 jekyll serve -l
+
+# Run a production build:
+npm run prod
 ```
 
 You can now view the site on: http://localhost:4000
