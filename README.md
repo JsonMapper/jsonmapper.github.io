@@ -20,11 +20,17 @@ To get the site up and running locally, run:
 npm i
 
 # Bundle the CSS in watch mode.
-npm run watch
+npm start
 
 # Start Jekyll to serve everything.
 # The -l flag will automatically reload the browser after changes.
 jekyll serve -l
+
+# Alternatively, you can run Jekyll in Docker:
+docker run --rm -v "$PWD:/srv/jekyll" -p '4000:4000' -it jekyll/jekyll:3 jekyll serve -l
+
+# Run a production build:
+npm run prod
 ```
 
 You can now view the site on: http://localhost:4000
@@ -51,5 +57,5 @@ or tell Node.js to use the legacy OpenSSL provider:
 
 ```shell
 export NODE_OPTIONS=--openssl-legacy-provider
-npm run watch
+npm start
 ```
