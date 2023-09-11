@@ -6,7 +6,7 @@ title: Symfony usage
 In order to use JsonMapper with your [Symfony](https://symfony.com){:target="_blank"} application you only need 
 JsonMapper's [SymfonyBundle](https://github.com/JsonMapper/SymfonyBundle){:target="_blank"}. 
 
-The installation of JsonMapper Laravel package can easily be done with [Composer](https://getcomposer.org){:target="_blank"}
+The installation of JsonMapper Symfony package can easily be done with [Composer](https://getcomposer.org){:target="_blank"}
 ```bash
 $ composer require json-mapper/symfony-bundle
 ```
