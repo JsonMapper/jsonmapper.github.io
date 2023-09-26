@@ -43,13 +43,13 @@
                 </div>
 
                 <div class="md:hidden">
-                    <button class="flex flex-col" onclick="navToggle();">
-                        <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24" id="menu-closed">
+                    <button class="flex flex-col" onclick="navToggle();" aria-label="Toggle the menu">
+                        <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24" id="menu-closed" aria-hidden="true">
                             <path fill-rule="evenodd"
                                   d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
                         </svg>
 
-                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="menu-open">
+                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="menu-open" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
