@@ -14,7 +14,7 @@
     "css-what": "^5.0.1",
     "cssnano": "^5.0.6",
     "mini-css-extract-plugin": "^1.4.0",
-    "postcss": "^8.4.20",
+    "postcss": "^8.4.31",
     "postcss-loader": "^5.2.0",
     "postcss-nested": "^5.0.5",
     "style-loader": "^2.0.0",
