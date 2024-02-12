@@ -13,7 +13,7 @@ $mapper = (new \JsonMapper\JsonMapperFactory())->default();
 $mapper->push(new \JsonMapper\Middleware\FinalCallback(function(
     \stdClass $json,
     \JsonMapper\Wrapper\ObjectWrapper $object,
-    \JsonMapper\ValuerObject\PropertyMap $map,
+    \JsonMapper\ValueObjects\PropertyMap $map,
     \JsonMapper\JsonMapperInterface $mapper
 ) {
     // Call a method on the object
