@@ -23,8 +23,9 @@ echo $object->getName(); // "John Doe"
 
 ## Why use JsonMapper
 One of the most important features of JsonMapper is its support for typed properties, which makes it easy to map JSON
-data to PHP classes with strong type checking. Additionally, it offers support for custom constructors and readonly
-properties/classes, which gives you greater control over how your data is mapped.
+data to PHP classes with strong type checking. JsonMapper can be used on an object of scalar values as well as nested 
+objects, when using PHP 8.1 or greater enums are supported out of the box as well. Additionally, JsonMapper offers 
+support for custom constructors and readonly properties/classes, which gives you greater control over how your data is mapped.
 
 Another key feature of JsonMapper is its capability to resolve namespace uses, which helps ensure that the implementation
 in your code can be as you desire in order to keep it well-organized and easy to maintain. It also supports mapping

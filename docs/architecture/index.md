@@ -29,5 +29,4 @@ $mapper->push(new class extends JsonMapper\Middleware\AbstractMiddleware {
 ```
 
 ## Supported PHP versions
-JsonMapper follows the supported versions of [PHP.net](https://www.php.net/supported-versions.php){:target="_blank"}
-and currently supports PHP versions 7.2 and higher. 
+JsonMapper currently supports PHP versions 7.2 and higher. 
