@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] | relative_url }}">
+    <link rel="stylesheet" href="{{ site.data.manifest['style.css'] | relative_url }}">
     <link rel="shortcut icon" href="{{ 'favicon.ico' | relative_url }}" />
     <link rel="apple-touch-icon" href="{{ 'apple-touch-icon.png' | relative_url }}" />
     <title>JsonMapper</title>
@@ -31,7 +31,7 @@
     <meta name="og:site_name" content="JsonMapper">
     <meta name="og:type" content="website">
 </head>
-<body class="antialiased text-base leading-normal bg-grey-100 dark:bg-slate-700 p-4 w-full lg:w-2/3 lg:w-2/3 mx-auto  text-gray-700 dark:text-slate-200">
+<body class="antialiased text-base leading-normal bg-grey-100 dark:bg-slate-700 p-4 w-full lg:w-2/3 lg:w-2/3 mx-auto text-gray-700 dark:text-slate-200">
     <div class="flex flex-col">
         <header>
             <div class="flex items-center justify-between p-4 border-b-2 border-yellow-500">
@@ -127,5 +127,6 @@
             menuClosed.classList.toggle('hidden');
         }
     </script>
+    <script src="{{ site.data.manifest['code-copy.js'] | relative_url }}"></script>
 </body>
 </html>
