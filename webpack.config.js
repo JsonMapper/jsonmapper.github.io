@@ -8,6 +8,8 @@ module.exports = {
     mode: isProduction ? 'production' : 'development',
     entry: {
         style: path.resolve(__dirname, './assets/index.css'),
+        monokai: path.resolve(__dirname, './assets/monokai.css'),
+        xcode: path.resolve(__dirname, './assets/xcode.css'),
         "code-copy": path.resolve(__dirname, './assets/copy-code.js'),
     },
     output: {

@@ -1,5 +1,9 @@
 {
-  "style.css": "./dist/style.0f13e7bea8bd38d8808d.css",
-  "style.js": "./dist/style.0f13e7bea8bd38d8808d.js",
-  "code-copy.js": "./dist/code-copy.0f13e7bea8bd38d8808d.js"
+  "style.css": "./dist/style.85d6c0d198753c92aa37.css",
+  "style.js": "./dist/style.85d6c0d198753c92aa37.js",
+  "monokai.css": "./dist/monokai.85d6c0d198753c92aa37.css",
+  "monokai.js": "./dist/monokai.85d6c0d198753c92aa37.js",
+  "xcode.css": "./dist/xcode.85d6c0d198753c92aa37.css",
+  "xcode.js": "./dist/xcode.85d6c0d198753c92aa37.js",
+  "code-copy.js": "./dist/code-copy.85d6c0d198753c92aa37.js"
 }
