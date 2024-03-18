@@ -1,4 +1,5 @@
 {
-  "docs.css": "./dist/docs.d6abaf77b6772ed47dcf.css",
-  "docs.js": "./dist/docs.d6abaf77b6772ed47dcf.js"
+  "style.css": "./dist/style.0f13e7bea8bd38d8808d.css",
+  "style.js": "./dist/style.0f13e7bea8bd38d8808d.js",
+  "code-copy.js": "./dist/code-copy.0f13e7bea8bd38d8808d.js"
 }

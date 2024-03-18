@@ -7,7 +7,7 @@ p, ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply font-extrabold font-bold leading-tight;
+    @apply font-bold leading-tight;
 }
 
 article > h1 {
@@ -127,5 +127,19 @@ code.highlighter-rouge {
 .highlight .il { color: #009999; }
 .highlight .gc { color: #999; background-color: #EAF2F5; }
 
+pre.highlight > button {
+    @apply inline-block absolute top-1 right-1 h-8	;
+    @apply cursor-pointer box-border;
+    @apply mx-4 px-2;
+    @apply uppercase text-center;
+    @apply opacity-50 hover:opacity-100;
+    @apply rounded-xl border-2;
+    @apply antialiased text-base leading-normal;
+    @apply text-gray-700 dark:text-slate-200;
+    @apply border-gray-700 dark:border-slate-200;
+    @apply transition ease-out duration-300;
+}
 
-
+pre.highlight {
+    @apply relative min-h-12;
+}
