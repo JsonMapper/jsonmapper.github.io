@@ -26,7 +26,7 @@ class CustomMiddleware extends AbstractMiddleware
         ObjectWrapper $object,
         PropertyMap $propertyMap,
         JsonMapperInterface $mapper
-    ): void {
+    ): void
     {
         // Custom logic goes here.
     }
