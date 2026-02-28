@@ -71,5 +71,5 @@ pre.highlight > button {
 }
 
 pre.highlight {
-    @apply relative min-h-12;
+    @apply relative min-h-12 pr-16;
 }
