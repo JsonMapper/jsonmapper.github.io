@@ -14,7 +14,8 @@ offers three methods to create a JsonMapper instance.
 $default = (new \JsonMapper\JsonMapperFactory())->default();
 
 // Use the `bestFit` to get the JsonMapper that fits best 
-// to your PHP runtime version.  
+// to your PHP runtime version. Since PHP 7.4 is the minimum 
+// supported version, this always includes TypedProperties middleware.  
 $bestfit = (new \JsonMapper\JsonMapperFactory())->bestFit();
 
 // Use `create` to build a new instance with a custom 
