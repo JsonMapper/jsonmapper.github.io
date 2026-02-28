@@ -10,6 +10,19 @@ The property map is utilised by the PropertyMapper when applying the data from t
 
 _This middleware is part of both the default and best fit factory methods as it provides elementary functionality to JsonMapper_
 
+## Supported docblock types
+
+The following `@var` annotation formats are supported:
+
+| Format | Description | Example |
+|--------|-------------|---------|
+| `Type` | A single value of the given type | `@var string` |
+| `Type[]` | An array of the given type | `@var int[]` |
+| `Type[][]` | A multi-dimensional array of the given type | `@var string[][]` |
+| `list<Type>` | A list of the given type | `@var list<User>` |
+| `array<Type>` | An array of the given type | `@var array<User>` |
+| `array<TKey, TValue>` | An array keyed by TKey with values of TValue | `@var array<string, User>` |
+
 ## Example
 ```php
 <?php
@@ -35,5 +48,34 @@ class Joke
     public $setup;
     /** @var string */
     public $punchline;
+}
+```
+
+## Array types example
+
+The middleware supports multiple ways to annotate array and list properties:
+
+```php
+<?php
+
+class Collection
+{
+    /** @var Tag[] */
+    public $tags;
+
+    /** @var list<Tag> */
+    public $tagList;
+
+    /** @var array<Tag> */
+    public $tagArray;
+
+    /** @var array<string, Tag> */
+    public $tagMap;
+}
+
+class Tag
+{
+    /** @var string */
+    public $name;
 }
 ```
