@@ -58,9 +58,9 @@ code.highlighter-rouge {
 }
 
 div.highlighter-rouge > button {
-    @apply inline-block absolute top-1 right-1 h-8;
+    @apply inline-block absolute bottom-1 right-1 h-8;
     @apply cursor-pointer box-border;
-    @apply mx-4 px-2;
+    @apply px-2;
     @apply uppercase text-center;
     @apply opacity-50 hover:opacity-100;
     @apply rounded-xl border-2;
