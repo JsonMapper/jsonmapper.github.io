@@ -30,7 +30,7 @@ article > ul {
 div.highlighter-rouge {
     font-family: Courier, monospace;
     background: #fff;
-    @apply p-2 shadow block;
+    @apply p-2 shadow block relative;
     @apply text-xs p-2 mb-4 mt-4 pl-4 pt-4;
     @apply rounded-xl;
     @apply border-2 border-gray-700 dark:border-slate-200;
@@ -57,8 +57,8 @@ code.highlighter-rouge {
     @apply bg-gray-200  dark:bg-slate-600;
 }
 
-pre.highlight > button {
-    @apply inline-block absolute top-1 right-1 h-8	;
+div.highlighter-rouge > button {
+    @apply inline-block absolute top-1 right-1 h-8;
     @apply cursor-pointer box-border;
     @apply mx-4 px-2;
     @apply uppercase text-center;
@@ -71,5 +71,5 @@ pre.highlight > button {
 }
 
 pre.highlight {
-    @apply relative min-h-12 pr-16;
+    @apply min-h-12;
 }

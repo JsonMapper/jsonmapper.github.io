@@ -28,5 +28,6 @@ document
                 }, 1200);
             })
         });
-        pre.appendChild(button);
+        const container = pre.closest('div.highlighter-rouge') || pre;
+        container.appendChild(button);
     });
