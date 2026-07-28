@@ -3,6 +3,11 @@
 This repository contains the source code for the [JsonMapper.net](https://jsonmapper.net) website.
 For the JsonMapper package, see the [JsonMapper/JsonMapper](https://github.com/JsonMapper/JsonMapper) repository.
 
+## Migration Planning
+
+The migration plan for moving this site from Jekyll to HydePHP 2 is documented in
+[`/docs/guides/hydephp-migration-plan.md`](/docs/guides/hydephp-migration-plan.md).
+
 ## Local Development
 
 Requirements:
