@@ -1,0 +1,62 @@
+{
+    "name": "jsonmapper/jsonmapper.github.io",
+    "description": "Source code for JsonMapper.net built with HydePHP.",
+    "keywords": [
+        "framework",
+        "hyde",
+        "hyde framework",
+        "hydephp",
+        "static site generator",
+        "static site framework",
+        "ssg"
+    ],
+    "homepage": "https://jsonmapper.net",
+    "type": "project",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/JsonMapper/jsonmapper.github.io/issues",
+        "source": "https://github.com/JsonMapper/jsonmapper.github.io"
+    },
+    "authors": [
+        {
+            "name": "JsonMapper Contributors"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "hyde/framework": "^2.0",
+        "laravel-zero/framework": "^11.0"
+    },
+    "require-dev": {
+        "hyde/realtime-compiler": "^4.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hyde\\Testing\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php -r \"@unlink('./app/storage/framework/cache/packages.php');\"",
+            "@php hyde package:discover --ansi"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "bin": [
+        "hyde"
+    ]
+}

@@ -3,64 +3,27 @@
 This repository contains the source code for the [JsonMapper.net](https://jsonmapper.net) website.
 For the JsonMapper package, see the [JsonMapper/JsonMapper](https://github.com/JsonMapper/JsonMapper) repository.
 
-## Migration Planning
-
-The migration plan for moving this site from Jekyll to HydePHP 2 is documented in
-[`/docs/guides/hydephp-migration-plan.md`](/docs/guides/hydephp-migration-plan.md).
-
 ## Local Development
 
 Requirements:
 
-- [Node.js](https://nodejs.org/)
-- [Jekyll](https://jekyllrb.com/)
+- [PHP 8.2+](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
 
-Jekyll is used to generate the pages,
-and webpack is used to bundle the styles.
+This site now uses [HydePHP 2](https://hydephp.com/) as its static site generator.
 
-To get the site up and running locally, run:
-
-```shell
-# Install all packages.
-npm i
-
-# Bundle the CSS in watch mode.
-npm start
-
-# Start Jekyll to serve everything.
-# The -l flag will automatically reload the browser after changes.
-jekyll serve -l
-
-# Alternatively, you can run Jekyll in Docker:
-docker run --rm -v "$PWD:/srv/jekyll" -p '4000:4000' -it jekyll/jekyll:3 jekyll serve -l
-
-# Run a production build:
-npm run prod
-```
-
-You can now view the site on: http://localhost:4000
-
-Because the site uses Tailwind,
-you also need to run the CSS bundler when changing classes used in the HTML,
-as unused classes will be pruned from the generated stylesheet.
-
-### Troubleshooting
-
-Note that if you use Node.js v17 or higher you will get an `ERR_OSSL_EVP_UNSUPPORTED` error like:
-
-```
-node:internal/crypto/hash:71
-  this[kHandle] = new _Hash(algorithm, xofLen);
-                  ^
-
-Error: error:0308010C:digital envelope routines::unsupported
-[...]
-```
-
-To fix this, you can either use Node.js v16,
-or tell Node.js to use the legacy OpenSSL provider:
+To run the site locally:
 
 ```shell
-export NODE_OPTIONS=--openssl-legacy-provider
-npm start
+# Install PHP dependencies
+composer install
+
+# Start the Hyde development server
+php hyde serve
+```
+
+To create a production build:
+
+```shell
+php hyde build
 ```
