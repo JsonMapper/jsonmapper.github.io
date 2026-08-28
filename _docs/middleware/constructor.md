@@ -4,11 +4,19 @@ title: Constructor
 
 # Constructor
 
-The constructor middleware (introduced in JsonMapper version 2.14.0) uses reflection to register a custom factory to the factory registry
+The constructor middleware uses reflection to register a custom factory to the factory registry
 which can utilise the class constructor. This enables the use of custom constructors without having to manually write factories. This feature
 can be combined with the readonly properties introduced with PHP 8.1.
- 
+
+_Available since JsonMapper 2.14.0_
+
 ```php
+<?php
+
+use JsonMapper\Handler\FactoryRegistry;
+use JsonMapper\Handler\PropertyMapper;
+use JsonMapper\JsonMapperBuilder;
+
 class User
 {
     public function __construct(
