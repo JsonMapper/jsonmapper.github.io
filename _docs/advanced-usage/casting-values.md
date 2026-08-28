@@ -2,6 +2,8 @@
 title: Casting values
 ---
 
+# Casting values
+
 JsonMapper out of the box wil come with a ScalarCaster configured to cast values to the following types:
  `boolean`, `integer`, `string`, `float` and `mixed`. These casts are applied in order to match the 
 properties of the class your trying to map to.

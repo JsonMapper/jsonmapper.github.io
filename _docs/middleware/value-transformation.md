@@ -2,6 +2,8 @@
 title: Value Transformation
 ---
 
+# Value Transformation
+
 The value transformation middleware can be used to apply a callback to the JSON value before it is mapped to the class property.
  
 ## Using a php named function as callback

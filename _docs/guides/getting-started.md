@@ -2,6 +2,8 @@
 title: Getting started
 ---
 
+# Getting started
+
 This guide will explain how to get started with JsonMapper. With JsonMapper the goal is to map a JSON response to a PHP object. 
 In this guide we will be using the Chuck Norris facts API. For more details on the API see [https://api.chucknorris.io](https://api.chucknorris.io)
 

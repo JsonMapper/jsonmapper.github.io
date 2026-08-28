@@ -2,6 +2,8 @@
 title: PHP 8.0 Attributes
 ---
 
+# PHP 8.0 Attributes
+
 The attributes middleware uses the PHP 8.0 attributes to map JSON data from names that do not match the model.
  This way your code doesn't need to follow the same naming convention as the JSON API exposes.
  

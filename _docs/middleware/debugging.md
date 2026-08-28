@@ -2,6 +2,8 @@
 title: Debugging
 ---
 
+# Debugging
+
 The debugging middleware allows you to log the current state of the ongoing map method. 
 The state of the json and object inputs as well as the property map will be logged to an [PSR-3 compliant](https://www.php-fig.org/psr/psr-3/){:target="_blank"} logger
  

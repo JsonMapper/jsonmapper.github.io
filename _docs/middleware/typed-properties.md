@@ -2,6 +2,8 @@
 title: Typed properties
 ---
 
+# Typed properties
+
 The typed properties middleware will scan the target object using [Reflection](https://www.php.net/manual/en/intro.reflection.php){:target="_blank"}
 for properties.  
 Using the reflection information it will determine the property type and amend these results to the property map.

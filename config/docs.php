@@ -31,7 +31,7 @@ return [
         'collapsible' => true,
 
         // A string of Markdown to show in the footer. Set to `false` to disable.
-        'footer' => '[JsonMapper on GitHub](https://github.com/JsonMapper/JsonMapper) &middot; [@JsonMapper](https://twitter.com/JsonMapper)',
+        'footer' => '[GitHub](https://github.com/JsonMapper/JsonMapper) &middot; [Twitter](https://twitter.com/JsonMapper)',
 
         /*
         |--------------------------------------------------------------------------

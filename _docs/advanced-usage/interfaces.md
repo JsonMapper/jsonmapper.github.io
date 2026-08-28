@@ -2,6 +2,8 @@
 title: Interfaces
 ---
 
+# Interfaces
+
 JsonMapper can support interface types but requires a factory to be registered which can map the data to 
 the concrete type of the interface. During the building phase of the JsonMapper
 instance you can use the`\JsonMapper\Handler\FactoryRegistry` which is the first parameter

@@ -2,6 +2,8 @@
 title: Laravel usage
 ---
 
+# Laravel usage
+
 In order to use JsonMapper with your [Laravel](https://laravel.com){:target="_blank"} application you only need 
 JsonMapper's [LaravelPackage](https://github.com/JsonMapper/LaravelPackage){:target="_blank"}. 
 

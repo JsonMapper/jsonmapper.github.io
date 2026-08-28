@@ -2,6 +2,8 @@
 title: Performance
 ---
 
+# Performance
+
 The JsonMapper library has not only been build for comfort but also taking performance into account. This
 page touches some of the performance improvements you could consider based on the needs.
 

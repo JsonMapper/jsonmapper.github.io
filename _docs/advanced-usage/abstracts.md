@@ -2,6 +2,8 @@
 title: Abstract classes
 ---
 
+# Abstract classes
+
 JsonMapper can support abstract types but requires a factory to be registered which can map the data to 
 the correct concrete implementation of the abstract class. During the building phase of the JsonMapper 
 instance you can use the`\JsonMapper\Handler\FactoryRegistry` which is the second parameter 

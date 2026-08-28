@@ -2,6 +2,8 @@
 title: Laravel Eloquent
 ---
 
+# Laravel Eloquent
+
 The Laravel Eloquent middleware allows you to map JSON data into a Laravel Eloquent model. The middleware uses the power of the
 Eloquent features such as automatic database column support, dates and casts.
 

@@ -2,6 +2,8 @@
 title: Setup
 ---
 
+# Setup
+
 ## Quick and easy setup
 Setting up JsonMapper for your project is simple. JsonMapper comes with a factory that
 offers three methods to create a JsonMapper instance.

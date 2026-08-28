@@ -2,6 +2,8 @@
 title: Symfony usage
 ---
 
+# Symfony usage
+
 In order to use JsonMapper with your [Symfony](https://symfony.com){:target="_blank"} application you only need 
 JsonMapper's [SymfonyBundle](https://github.com/JsonMapper/SymfonyBundle){:target="_blank"}. 
 

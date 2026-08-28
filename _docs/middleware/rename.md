@@ -2,6 +2,8 @@
 title: Rename
 ---
 
+# Rename
+
 The rename middleware uses an explicit defined mapping to rename JSON properties in order
 to match your model's naming convention. This way your code doesn't need to follow the same 
 naming convention as the JSON API exposes.
