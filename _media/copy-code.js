@@ -5,7 +5,8 @@
  * copy button of its own, so this was lost in the migration and is restored
  * here. Two changes from the original:
  *
- *  - It selects `#document-main-content pre` rather than `article pre.highlight`,
+ *  - It selects `#document-main-content pre` (docs) and `[data-copy-code] pre`
+ *    (the landing page sample) rather than `article pre.highlight`,
  *    since `.highlight` was Rouge markup that Torchlight does not produce.
  *  - It injects its own styles, so the project does not need a stylesheet or a
  *    build step to bring back one button.
@@ -85,7 +86,7 @@
         }
 
         injectStyles();
-        document.querySelectorAll('#document-main-content pre').forEach(addButton);
+        document.querySelectorAll('#document-main-content pre, [data-copy-code] pre').forEach(addButton);
     }
 
     if (document.readyState === 'loading') {

@@ -373,7 +373,7 @@ return [
         // These are the route keys of pages that should not show up in the navigation menu.
         'exclude' => [
             '404',
-            // The site root is only a redirect to /docs/, so it is not a menu item.
+            // The landing page carries its own header nav, so it is not a menu item.
             'index',
         ],
 

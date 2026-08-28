@@ -73,8 +73,16 @@ of Hyde's route index, so `php hyde serve` returns 404 for them. That is expecte
 compiled `_site/` output. To check them, run `php hyde build` and serve the result statically with
 `php -S localhost:8000 -t _site`.
 
-The site root is not one of them: `/` is a real page (`_pages/index.blade.php`) that forwards to
-`/docs/`, so it resolves under `hyde serve` too.
+The site root is not one of them. `/` is the landing page, a Blade page at
+`_pages/index.blade.php`, so it resolves under `hyde serve` too. Its code sample lives in
+`resources/includes/home-example.md` and is rendered through the Markdown pipeline so it picks up the
+same highlighting as the documentation. Note that a multi-line `@php` block cannot be combined with the
+single-line `@php($title = ...)` front matter directive in that file: Blade emits an unterminated
+opening tag and the page fails to render.
+
+Presentation on that page uses utilities already present in the precompiled `_media/app.css`, plus a
+small scoped `<style>` block for what it lacks (the yellow accent, responsive columns, a couple of
+radii). Check a class exists in that file before using it — there is no Tailwind build to add one.
 
 `php hyde build` does not fully empty `_site/` between runs — it removes only top-level `.html`/`.json`
 files plus the media directory. If you are inspecting build output, run `rm -rf _site` first so stale

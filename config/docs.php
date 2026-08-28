@@ -102,7 +102,7 @@ return [
         */
 
         'labels' => [
-            \Hyde\Pages\DocumentationPage::homeRouteName() => 'Introduction',
+            \Hyde\Pages\DocumentationPage::homeRouteName() => 'Documentation',
 
             // Group headings, matching the old _data/menu.yml sections.
             'general' => 'General',
