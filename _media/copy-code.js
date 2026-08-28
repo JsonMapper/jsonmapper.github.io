@@ -10,6 +10,12 @@
  *    since `.highlight` was Rouge markup that Torchlight does not produce.
  *  - It injects its own styles, so the project does not need a stylesheet or a
  *    build step to bring back one button.
+ *
+ * The button is anchored to a wrapper around the code block rather than inside
+ * it, and sits bottom right. Both matter: the original sat inside the element
+ * that scrolls horizontally, so on narrow screens it covered the code and slid
+ * away when you swiped. That was reported as an issue against the Jekyll site
+ * and fixed the same way in PR #51, which this carries forward.
  */
 (function () {
     'use strict';
@@ -20,7 +26,7 @@
     var styles = [
         '.code-copy-wrapper { position: relative; }',
         '.code-copy-button {',
-        '  position: absolute; top: .5rem; right: .5rem;',
+        '  position: absolute; bottom: .5rem; right: .5rem;',
         '  display: inline-flex; align-items: center; justify-content: center;',
         '  width: 2rem; height: 2rem; padding: .25rem;',
         '  cursor: pointer; box-sizing: border-box;',
