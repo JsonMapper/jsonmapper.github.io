@@ -34,6 +34,15 @@
         .jm-accent-rule { border-bottom: 2px solid var(--jm-accent); }
         .jm-shell { max-width: 64rem; }
 
+        /* Section rhythm lives here rather than in utility classes. app.css is
+           precompiled and does not contain pb-16 or pt-16, so those silently do
+           nothing; defining the spacing here cannot fail that way. */
+        .jm-section { padding-top: 3.5rem; }
+        .jm-section:last-child { padding-bottom: 3.5rem; }
+
+        /* app.css has no max-h-* utilities, so the logo needs an explicit cap. */
+        .jm-logo { max-height: 2.5rem; width: auto; }
+
         /* No grid-cols-* utilities are compiled into app.css, so columns live here. */
         .jm-cards { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
         @media (min-width: 768px) { .jm-cards { grid-template-columns: repeat(3, 1fr); } }
@@ -81,9 +90,9 @@
     <header class="jm-accent-rule">
         <div class="jm-shell mx-auto w-full flex items-center justify-between px-6 py-4">
             <a href="{{ Routes::get('index')->getLink() }}" title="{{ config('hyde.name') }}">
-                <img src="{{ Hyde::asset('jsonmapper.png') }}" class="max-h-10 w-auto dark:hidden"
+                <img src="{{ Hyde::asset('jsonmapper.png') }}" class="jm-logo dark:hidden"
                      alt="{{ config('hyde.name') }}" width="210" height="85">
-                <img src="{{ Hyde::asset('jsonmapper-light.png') }}" class="max-h-10 w-auto hidden dark:block"
+                <img src="{{ Hyde::asset('jsonmapper-light.png') }}" class="jm-logo hidden dark:block"
                      alt="{{ config('hyde.name') }}" width="210" height="85">
             </a>
 
@@ -96,7 +105,7 @@
     </header>
 
     <main id="content" class="flex-grow">
-        <section class="jm-shell mx-auto w-full px-6 py-16">
+        <section class="jm-shell jm-section mx-auto w-full px-6">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Map a JSON response to your PHP object</h1>
 
             <p class="text-lg mb-8 max-w-3xl">
@@ -114,7 +123,7 @@
             </p>
         </section>
 
-        <section class="jm-shell mx-auto w-full px-6 pb-16">
+        <section class="jm-shell jm-section mx-auto w-full px-6">
             <h2 class="text-2xl font-bold mb-4">A few lines is all it takes</h2>
             <p class="mb-4 max-w-3xl">
                 With just a few lines of code you can map a JSON string to a PHP class and start working with it right away.
@@ -124,7 +133,7 @@
             </div>
         </section>
 
-        <section class="jm-shell mx-auto w-full px-6 pb-16">
+        <section class="jm-shell jm-section mx-auto w-full px-6">
             <h2 class="text-2xl font-bold mb-8">Why use JsonMapper</h2>
 
             <div class="jm-cards">
@@ -156,7 +165,7 @@
             </div>
         </section>
 
-        <section class="jm-shell mx-auto w-full px-6 pb-16">
+        <section class="jm-shell jm-section mx-auto w-full px-6">
             <h2 class="text-2xl font-bold mb-4">Using a framework?</h2>
             <p class="mb-4 max-w-3xl">
                 JsonMapper ships first-party integrations, so there is little to wire up yourself.
