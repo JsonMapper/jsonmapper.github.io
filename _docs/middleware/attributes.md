@@ -31,5 +31,3 @@ $mapper->mapObjectFromString('{ "UserName": "John Doe", "Identifier": 42 }', $ob
 echo $object->id; // 42
 echo $object->name; // "John Doe"
 ```
-
-In your own models the attribute is normally imported, so it reads as `#[MapFrom("Identifier")]`.
