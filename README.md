@@ -69,9 +69,12 @@ php hyde serve
 ```
 
 The redirect pages that preserve the pre-migration URLs are generated after the build and are not part
-of Hyde's route index, so `php hyde serve` returns 404 for them and for `/`. That is expected; they
-exist in the compiled `_site/` output. To check them, run `php hyde build` and serve the result
-statically with `php -S localhost:8000 -t _site`.
+of Hyde's route index, so `php hyde serve` returns 404 for them. That is expected; they exist in the
+compiled `_site/` output. To check them, run `php hyde build` and serve the result statically with
+`php -S localhost:8000 -t _site`.
+
+The site root is not one of them: `/` is a real page (`_pages/index.blade.php`) that forwards to
+`/docs/`, so it resolves under `hyde serve` too.
 
 `php hyde build` does not fully empty `_site/` between runs — it removes only top-level `.html`/`.json`
 files plus the media directory. If you are inspecting build output, run `rm -rf _site` first so stale

@@ -41,9 +41,8 @@ class GenerateRedirectsBuildTask extends PostBuildTask
      * @var array<string, string>
      */
     protected const REDIRECTS = [
-        // The introduction used to be the site root; it is now the docs root.
-        'index' => '/docs/',
-
+        // The site root is not listed here. It is a real page,
+        // _pages/index.blade.php, so that `hyde serve` can resolve it.
         'docs/usage/installation' => '/docs/installation',
         'docs/usage/setup' => '/docs/setup',
 
@@ -99,7 +98,7 @@ class GenerateRedirectsBuildTask extends PostBuildTask
      */
     protected function pathVariants(string $path): array
     {
-        return $path === 'index' ? [$path] : [$path, "$path/index"];
+        return [$path, "$path/index"];
     }
 
     /**
