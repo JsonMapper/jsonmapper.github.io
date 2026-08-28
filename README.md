@@ -47,6 +47,70 @@ from the file path. Ordering and labels live in `config/docs.php` under `sidebar
 
 Documentation output is flat, so `_docs/usage/installation.md` is served at `/docs/installation`.
 
+## Code examples
+
+The package these pages document lives in
+[JsonMapper/JsonMapper](https://github.com/JsonMapper/JsonMapper), so nothing in this repo compiles the
+examples. A broken snippet renders perfectly and ships. Two conventions and one CI check keep that in
+hand.
+
+**Write class names out in full; do not add an import block.** A snippet is usually a dozen lines, and
+five lines of `use` above it costs more than the width does:
+
+```php
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
+$mapper->push(new \JsonMapper\Middleware\CaseConversion(
+    \JsonMapper\Enums\TextNotation::STUDLY_CAPS(),
+    \JsonMapper\Enums\TextNotation::CAMEL_CASE()
+));
+```
+
+The exception is a snippet standing in for a real file in the reader's application — one that declares
+its own `namespace`. Those use imports, because that is what the reader would write.
+
+**Let the example define the classes it maps onto.** Do not reference the package's test fixtures; a
+reader copying `\JsonMapper\Tests\Implementation\SimpleObject` gets a class their project does not
+have. Three lines of `class User { public string $name; }` is enough.
+
+**Note the introducing release only for APIs added during 2.x**, as `_Available since JsonMapper
+x.y.z_` under the page intro. The site documents v2, so "available since 0.3.0" answers a question
+nobody has.
+
+Do not write the *documented* release into the prose. It is read from the installed
+`json-mapper/json-mapper` by `App\Support\DocumentedVersion` and shown once, at the foot of the
+documentation sidebar, so the version the pages claim to describe is by construction the version their
+examples are checked against. Bumping the dependency updates the site. The deploy installs with
+`--no-dev`, where the package is absent, so the resolver falls back to `composer.lock`.
+
+`.github/workflows/lint-examples.yml` checks every ` ```php ` block on each pull request, in two
+passes. Run them locally with:
+
+```shell
+$PHP .github/scripts/lint-code-examples.php                              # 1. parse
+$PHP .github/scripts/extract-code-examples.php .phpstan-doc-examples     # 2. analyse
+$PHP vendor/bin/phpstan analyse -c .github/phpstan.neon --memory-limit=512M .phpstan-doc-examples
+```
+
+The first is a parse check needing only a PHP binary. The second runs PHPStan against the real
+`json-mapper/json-mapper`, which is a dev dependency here for exactly that reason, and is what catches
+a call to a method that does not exist, a missing constructor argument, or an argument of the wrong
+type. Both report against the markdown file and line: the extractor blanks out everything that is not
+code rather than collapsing it, so an analysed file's line numbers are the page's line numbers.
+
+Examples are extracted **per page**, since a page routinely defines a class in one fence and maps onto
+it in the next, and each page is given its own namespace so that the `User` several pages define does
+not collide. A fence that declares its own `namespace` is analysed as its own file.
+
+Classes the examples borrow from the reader's imagination (`\App\…`) or from packages that cannot be
+installed alongside Hyde are declared in `.github/stubs/placeholders.php`. Prefer a real dev dependency
+over a stub where the two can coexist — `json-mapper/laravel-package` and `monolog/monolog` are
+installed for this reason, so those pages are checked against the genuine classes.
+
+Neither pass runs the examples, so a snippet that is valid and well-typed but throws at run time still
+gets through — `(new JsonMapperFactory())->create()` with no middleware is the case that motivated
+this. Before changing a snippet, check it against a real checkout of JsonMapper and make the inline
+`// "John Doe"` comments the output it genuinely produces.
+
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/build.yml`, which builds the site and publishes it to

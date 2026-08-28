@@ -31,7 +31,13 @@ return [
         'collapsible' => true,
 
         // A string of Markdown to show in the footer. Set to `false` to disable.
-        'footer' => '[GitHub](https://github.com/JsonMapper/JsonMapper) &middot; [Twitter](https://twitter.com/JsonMapper)',
+        // The documented release is read from the installed JsonMapper rather
+        // than written out, so it cannot drift from the version the code
+        // examples are checked against. See App\Support\DocumentedVersion.
+        'footer' => '[GitHub](https://github.com/JsonMapper/JsonMapper) &middot; [Twitter](https://twitter.com/JsonMapper)'
+            .(\App\Support\DocumentedVersion::get() !== null
+                ? ' &middot; Documenting JsonMapper '.\App\Support\DocumentedVersion::get()
+                : ''),
 
         /*
         |--------------------------------------------------------------------------

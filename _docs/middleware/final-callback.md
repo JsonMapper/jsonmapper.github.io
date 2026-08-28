@@ -27,10 +27,9 @@ $mapper->push(new \JsonMapper\Middleware\FinalCallback(function(
     \JsonMapper\ValueObjects\PropertyMap $map,
     \JsonMapper\JsonMapperInterface $mapper
 ) {
-    // Call a method on the object
+    // Call a method on the object now that it has been filled
     $object->getObject()->done();
-    // Or persist it in the cache
-    Cache::put('key', $object->getObject(), $seconds);
+    // ...or hand it to a cache, a queue, an event dispatcher, and so on
 }));
 
 $object = new User();

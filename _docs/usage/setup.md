@@ -50,7 +50,7 @@ $propertyMapper = \JsonMapper\Builders\PropertyMapperBuilder::new()
     ->build();
 
 $mapper = \JsonMapper\JsonMapperBuilder::new()
-    ->withJsonMapperClassName(YourExtendedJsonMapper::class)
+    ->withJsonMapperClassName(\App\YourExtendedJsonMapper::class)
     ->withPropertyMapper($propertyMapper)
     ->withDefaultCache(new \JsonMapper\Cache\ArrayCache())
     ->withDocBlockAnnotationsMiddleware()
