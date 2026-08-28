@@ -11,39 +11,65 @@ offers three methods to create a JsonMapper instance.
 ```php
 <?php
 
-// Simply use `default` which offers the most light weigth JsonMapper
-$default = (new \JsonMapper\JsonMapperFactory())->default();
+use JsonMapper\JsonMapperFactory;
 
-// Use the `bestFit` to get the JsonMapper that fits best 
-// to your PHP runtime version. Since PHP 7.4 is the minimum 
-// supported version, this always includes TypedProperties middleware.  
-$bestfit = (new \JsonMapper\JsonMapperFactory())->bestFit();
+// Use `default` which offers the most lightweight JsonMapper. It includes the
+// DocBlock annotations and namespace resolver middleware.
+$default = (new JsonMapperFactory())->default();
 
-// Use `create` to build a new instance with a custom 
-// property mapper and series of middleware
-$custom = (new \JsonMapper\JsonMapperFactory())->create(
-  new PropertyMapper, 
-  new \JsonMapper\Middleware\DocBlockAnnotations(),   
-  ...
-);
-```  
+// Use `bestFit` to get the JsonMapper that fits best to your PHP runtime
+// version. Since PHP 7.4 is the minimum supported version, this always adds
+// the typed properties middleware on top of the default set.
+$bestFit = (new JsonMapperFactory())->bestFit();
+```
 
-## Tailored setup
-Since version 2.3.0 JsonMapper offers a `JsonMapperBuilder` class which can be used to have a more tailored
-setup of your mapper instance. In version 2.10.0 the `PropertyMapperBuilder` was introduced. Below you can find
-an example that shows how to can create a JsonMapper instance using the builder.
+Use `create` to build an instance with your own property mapper and your own series of
+middleware. Unlike `default` and `bestFit` it adds no middleware of its own, so pass at
+least one — building a mapper with an empty middleware chain throws a `BuilderException`.
 
 ```php
 <?php
 
-$propertyMapperBuilder = PropertyMapperBuilder::create()
-    ->withScalarCaster(new StrictScalarCaster());
-$jsonMapperBuilder = JsonMapperBuilder::create()
-    ->withJsonMapperClass(YourExtendedJsonMapper::class)
-    ->withProperyMapper(new PropertyMapper)
-    ->withDefaultCache(new ArrayCache)
-    ->withDocBlockAnnotationsMiddleware()
-    ->withPropertyMapper($propertyMapperBuilder->build());
+use JsonMapper\Cache\ArrayCache;
+use JsonMapper\Handler\PropertyMapper;
+use JsonMapper\JsonMapperFactory;
+use JsonMapper\Middleware\DocBlockAnnotations;
+use JsonMapper\Middleware\NamespaceResolver;
 
-$mapper = $jsonMapperBuilder->build();
+$cache = new ArrayCache();
+
+$custom = (new JsonMapperFactory())->create(
+    new PropertyMapper(),
+    new DocBlockAnnotations($cache),
+    new NamespaceResolver($cache)
+);
 ```
+
+## Tailored setup
+Since version 2.3.0 JsonMapper offers a `JsonMapperBuilder` class which can be used to have a more tailored
+setup of your mapper instance. In version 2.10.0 the `PropertyMapperBuilder` was introduced. Below you can find
+an example that shows how you can create a JsonMapper instance using the builders.
+
+```php
+<?php
+
+use JsonMapper\Builders\PropertyMapperBuilder;
+use JsonMapper\Cache\ArrayCache;
+use JsonMapper\Helpers\StrictScalarCaster;
+use JsonMapper\JsonMapperBuilder;
+
+$propertyMapper = PropertyMapperBuilder::new()
+    ->withScalarCaster(new StrictScalarCaster())
+    ->build();
+
+$mapper = JsonMapperBuilder::new()
+    ->withJsonMapperClassName(YourExtendedJsonMapper::class)
+    ->withPropertyMapper($propertyMapper)
+    ->withDefaultCache(new ArrayCache())
+    ->withDocBlockAnnotationsMiddleware()
+    ->build();
+```
+
+Both builders are created through a static `new()` method. The class passed to
+`withJsonMapperClassName()` must implement `\JsonMapper\JsonMapperInterface`; the cache given
+to `withDefaultCache()` is handed to every middleware that is added without a cache of its own.

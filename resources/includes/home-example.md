@@ -1,10 +1,17 @@
 ```php
+use JsonMapper\JsonMapperBuilder;
+
+class User
+{
+    public string $name;
+}
+
 $mapper = JsonMapperBuilder::new()
     ->withDocBlockAnnotationsMiddleware()
     ->withTypedPropertiesMiddleware()
     ->build();
 
-$object = $mapper->mapToClass('{ "name": "John Doe" }', \Tests\JsonMapper\Implementation\SimpleObject::class);
+$user = $mapper->mapToClassFromString('{ "name": "John Doe" }', User::class);
 
-echo $object->getName(); // "John Doe"
+echo $user->name; // "John Doe"
 ```
