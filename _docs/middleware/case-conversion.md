@@ -7,8 +7,6 @@ title: Case conversion
 The case conversion middleware can map from a specific text notation to another text notation.
  This way your code doesn't need to follow the same text notation as the JSON API exposes.
 
-_Available since JsonMapper 0.3.0_
-
 ```php
 class User
 {

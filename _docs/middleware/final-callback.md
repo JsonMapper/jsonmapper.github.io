@@ -6,8 +6,6 @@ title: Final callback
 
 Using the final callback middleware it is possible to invoke a callback because you might need to initialise some method on your model or perhaps want to put it into cache.
 
-_Available since JsonMapper 0.3.0_
-
 ```php
 class User
 {

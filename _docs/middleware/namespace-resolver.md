@@ -9,8 +9,6 @@ in order to get the namespaces that are imported.  These imports will be applied
 
 _This middleware is part of both the default and best fit factory methods as it provides elementary functionality to JsonMapper_
 
-_Available since JsonMapper 0.3.0_
-
 ## Example
 ```php
 <?php

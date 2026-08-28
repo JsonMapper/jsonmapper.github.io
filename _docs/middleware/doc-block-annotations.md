@@ -11,8 +11,6 @@ The property map is utilised by the PropertyMapper when applying the data from t
 
 _This middleware is part of both the default and best fit factory methods as it provides elementary functionality to JsonMapper_
 
-_Available since JsonMapper 0.1.0_
-
 ## Supported docblock types
 
 The following `@var` annotation formats are supported:

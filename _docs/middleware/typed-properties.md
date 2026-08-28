@@ -11,8 +11,6 @@ The property map is utilised by the PropertyMapper when applying the data from t
 
 _This middleware is part of the best fit factory method as it provides elementary functionality to JsonMapper_
 
-_Available since JsonMapper 0.1.0_
-
 ## Example
 ```php
 <?php
