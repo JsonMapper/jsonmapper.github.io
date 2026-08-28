@@ -1,0 +1,28 @@
+---
+title: Final callback
+---
+
+# Final callback
+
+Using the final callback middleware it is possible to invoke a callback because you might need to initialise some method on your model or perhaps want to put it into cache.
+
+```php
+$logger = new \Psr\Log\Test\TestLogger();
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
+
+# Add the callback middleware
+$mapper->push(new \JsonMapper\Middleware\FinalCallback(function(
+    \stdClass $json,
+    \JsonMapper\Wrapper\ObjectWrapper $object,
+    \JsonMapper\ValueObjects\PropertyMap $map,
+    \JsonMapper\JsonMapperInterface $mapper
+) {
+    // Call a method on the object
+    $object->getObject()->done();
+    // Or persist it in the cache
+    Cache::put('key', $object->getObject(), $seconds);
+}));
+
+$object = new \Tests\JsonMapper\Implementation\SimpleObject();
+$mapper->mapObjectFromString('{ "Name": "John Doe" }', $object);
+``` 

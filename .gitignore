@@ -1,7 +1,7 @@
-/node_modules/
-/.DS_Store
-/.jekyll-cache
-/_site/
-/.idea/
 /vendor/
-/build/
+/node_modules/
+/_site/
+/builds/
+/.idea/
+/.DS_Store
+.env
