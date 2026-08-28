@@ -10,21 +10,24 @@ instance you can use the`\JsonMapper\Handler\FactoryRegistry` which is the secon
 (`$nonInstantiableTypeResolver`) to the `\JsonMapper\Handler\PropertyMapper` constructor.
 
 ## Example
- ```php
+```php
 <?php
+
 $nonInstantiableTypeResolver = new \JsonMapper\Handler\FactoryRegistry();
 $nonInstantiableTypeResolver->addFactory(
-    AbstractShape::class,
-    new \JsonMapper\Tests\Implementation\Models\ShapeInstanceFactory()
+    \App\Shapes\AbstractShape::class,
+    new \App\Shapes\ShapeInstanceFactory()
 );
 
 $mapper = \JsonMapper\JsonMapperBuilder::new()
+    ->withPropertyMapper(new \JsonMapper\Handler\PropertyMapper(null, $nonInstantiableTypeResolver))
     ->withDocBlockAnnotationsMiddleware()
     ->withNamespaceResolverMiddleware()
-    ->withPropertyMapper(new \JsonMapper\Handler\PropertyMapper(null, $nonInstantiableTypeResolver))
     ->build();
 
-$object = \JsonMapper\Tests\Implementation\Models\Wrappers\AbstractShapeWrapper();
+$object = new \App\Shapes\AbstractShapeWrapper();
 $mapper->mapObjectFromString('{"shape": {"type": "square", "width": 5, "length": 6}}', $object);
- ``` 
-_The classes referenced in the above example can be found as a working example in the [integration test](https://github.com/JsonMapper/JsonMapper/blob/develop/tests/Integration/FeatureSupportsMappingToInterfaceAndAbstractClassTest.php#L27-L42)_
+```
+
+_`AbstractShape`, `AbstractShapeWrapper` and `ShapeInstanceFactory` above stand in for your own classes. A
+working equivalent can be found in the [integration test](https://github.com/JsonMapper/JsonMapper/blob/develop/tests/Integration/FeatureSupportsMappingToInterfaceAndAbstractClassTest.php#L27-L42)._

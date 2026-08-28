@@ -13,19 +13,20 @@ individual project.
 This also allows for custom middleware to meet edge cases not offered in the middleware that is par of JsonMapper.
 
 ```php
+$cache = new \JsonMapper\Cache\ArrayCache();
 $mapper = new \JsonMapper\JsonMapper(new \JsonMapper\Handler\PropertyMapper());
 
 /* Push included middleware onto the mapper */
-$mapper->push(new \JsonMapper\Middleware\DocBlockAnnotations());
-$mapper->push(new \JsonMapper\Middleware\NamespaceResolver());
+$mapper->push(new \JsonMapper\Middleware\DocBlockAnnotations($cache));
+$mapper->push(new \JsonMapper\Middleware\NamespaceResolver($cache));
 
 /* Add custom middleware */
-$mapper->push(new class extends JsonMapper\Middleware\AbstractMiddleware {
+$mapper->push(new class extends \JsonMapper\Middleware\AbstractMiddleware {
     public function handle(
         \stdClass $json,
-        JsonMapper\Wrapper\ObjectWrapper $object,
-        JsonMapper\ValueObjects\PropertyMap $map,
-        JsonMapper\JsonMapperInterface $mapper
+        \JsonMapper\Wrapper\ObjectWrapper $object,
+        \JsonMapper\ValueObjects\PropertyMap $map,
+        \JsonMapper\JsonMapperInterface $mapper
     ): void {
         /* Custom logic here */
     }
@@ -33,4 +34,4 @@ $mapper->push(new class extends JsonMapper\Middleware\AbstractMiddleware {
 ```
 
 ## Supported PHP versions
-JsonMapper currently supports PHP versions 7.4 and higher. 
+JsonMapper currently supports PHP versions 7.4 and higher.
