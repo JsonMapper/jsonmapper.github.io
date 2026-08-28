@@ -1,0 +1,41 @@
+name: Lint documentation examples
+
+# The package this site documents lives in a different repository, so nothing in
+# the build compiles the examples — a snippet that is not valid PHP renders
+# perfectly and ships broken. This catches that class of mistake on every PR.
+#
+# It is deliberately a parse check and nothing more. Actually running the
+# examples would mean installing json-mapper/json-mapper here and pinning a
+# version, which is the coupling this repo has so far avoided; a linter needs
+# only a PHP binary and takes seconds.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-examples-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Parse the PHP code blocks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # No Composer install: the linter uses only core PHP, so the job stays
+      # independent of the site's dependencies.
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Lint the PHP code blocks in the documentation
+        run: php .github/scripts/lint-code-examples.php

@@ -47,6 +47,46 @@ from the file path. Ordering and labels live in `config/docs.php` under `sidebar
 
 Documentation output is flat, so `_docs/usage/installation.md` is served at `/docs/installation`.
 
+## Code examples
+
+The package these pages document lives in
+[JsonMapper/JsonMapper](https://github.com/JsonMapper/JsonMapper), so nothing in this repo compiles the
+examples. A broken snippet renders perfectly and ships. Two conventions and one CI check keep that in
+hand.
+
+**Write class names out in full; do not add an import block.** A snippet is usually a dozen lines, and
+five lines of `use` above it costs more than the width does:
+
+```php
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
+$mapper->push(new \JsonMapper\Middleware\CaseConversion(
+    \JsonMapper\Enums\TextNotation::STUDLY_CAPS(),
+    \JsonMapper\Enums\TextNotation::CAMEL_CASE()
+));
+```
+
+The exception is a snippet standing in for a real file in the reader's application — one that declares
+its own `namespace`. Those use imports, because that is what the reader would write.
+
+**Let the example define the classes it maps onto.** Do not reference the package's test fixtures; a
+reader copying `\JsonMapper\Tests\Implementation\SimpleObject` gets a class their project does not
+have. Three lines of `class User { public string $name; }` is enough.
+
+**Note the introducing release only for APIs added during 2.x**, as `_Available since JsonMapper
+x.y.z_` under the page intro. The site documents v2, so "available since 0.3.0" answers a question
+nobody has.
+
+`.github/workflows/lint-examples.yml` parses every ` ```php ` block on each pull request and reports
+failures against the markdown file and line. Run it locally with:
+
+```shell
+$PHP .github/scripts/lint-code-examples.php
+```
+
+It is a parse check, not proof an example works — running the examples would mean installing the
+package here and pinning a version. Before changing a snippet, check it against a real checkout of
+JsonMapper, and make the inline `// "John Doe"` comments the output it genuinely produces.
+
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/build.yml`, which builds the site and publishes it to
