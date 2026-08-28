@@ -12,11 +12,10 @@ can be combined with the readonly properties introduced with PHP 8.1.
 class User
 {
     public function __construct(
-        public readonly $name,
+        public readonly string $name,
     ) {}
 }
 
-$cache = new NullCache();
 $factoryRegistry = new FactoryRegistry();
 $mapper = JsonMapperBuilder::new()
     ->withDocBlockAnnotationsMiddleware()
@@ -24,7 +23,7 @@ $mapper = JsonMapperBuilder::new()
     ->withPropertyMapper(new PropertyMapper($factoryRegistry))
     ->build();
 
-$mapper->mapToClassFromString('{ "name": "John Doe" }', User::class);
+$object = $mapper->mapToClassFromString('{ "name": "John Doe" }', User::class);
 
 echo $object->name; // "John Doe"
 ```
