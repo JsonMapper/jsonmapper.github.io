@@ -58,6 +58,21 @@ path there.
 
 ## Troubleshooting
 
+`php hyde serve` starts PHP's built-in server as a child process using whichever `php` is on your
+`PATH`. Invoking Hyde with an explicit 8.2 binary is not enough — if `php` resolves to an older
+version the server returns HTTP 500 with a Composer platform check error. Put the right PHP on your
+`PATH` first:
+
+```shell
+export PATH=/usr/local/Cellar/php@8.2/8.2.27/bin:$PATH
+php hyde serve
+```
+
+The redirect pages that preserve the pre-migration URLs are generated after the build and are not part
+of Hyde's route index, so `php hyde serve` returns 404 for them and for `/`. That is expected; they
+exist in the compiled `_site/` output. To check them, run `php hyde build` and serve the result
+statically with `php -S localhost:8000 -t _site`.
+
 `php hyde build` does not fully empty `_site/` between runs — it removes only top-level `.html`/`.json`
 files plus the media directory. If you are inspecting build output, run `rm -rf _site` first so stale
 pages from an earlier build do not mislead you.
