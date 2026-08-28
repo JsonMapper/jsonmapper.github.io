@@ -10,28 +10,19 @@ The attributes middleware uses the PHP 8.0 attributes to map JSON data from name
 _Available since JsonMapper 1.4.0_
 
 ```php
-<?php
-
-use JsonMapper\Cache\NullCache;
-use JsonMapper\Handler\PropertyMapper;
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\Attributes\Attributes;
-use JsonMapper\Middleware\Attributes\MapFrom;
-use JsonMapper\Middleware\TypedProperties;
-
 class User
 {
-    #[MapFrom("Identifier")]
+    #[\JsonMapper\Middleware\Attributes\MapFrom("Identifier")]
     public int $id;
-    #[MapFrom("UserName")]
+    #[\JsonMapper\Middleware\Attributes\MapFrom("UserName")]
     public string $name;
 }
 
-$cache = new NullCache();
-$mapper = (new JsonMapperFactory())->create(
-    new PropertyMapper(),
-    new Attributes(),
-    new TypedProperties($cache)
+$cache = new \JsonMapper\Cache\NullCache();
+$mapper = (new \JsonMapper\JsonMapperFactory())->create(
+    new \JsonMapper\Handler\PropertyMapper(),
+    new \JsonMapper\Middleware\Attributes\Attributes(),
+    new \JsonMapper\Middleware\TypedProperties($cache)
 );
 $object = new User();
 
@@ -40,3 +31,5 @@ $mapper->mapObjectFromString('{ "UserName": "John Doe", "Identifier": 42 }', $ob
 echo $object->id; // 42
 echo $object->name; // "John Doe"
 ```
+
+In your own models the attribute is normally imported, so it reads as `#[MapFrom("Identifier")]`.

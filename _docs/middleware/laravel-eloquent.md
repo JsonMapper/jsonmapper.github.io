@@ -11,19 +11,14 @@ Saving the data returned from an url as Eloquent models can be achieved with the
 ```php
 <?php
 
-use Illuminate\Support\Collection;
-use JsonMapper\Cache\ArrayCache;
-use JsonMapper\EloquentMiddleware\EloquentMiddleware;
-use JsonMapper\JsonMapperFactory;
-
 $url = 'https://api.opensource.org/licenses/';
 $data = file_get_contents($url);
 
-$mapper = (new JsonMapperFactory())->bestFit();
-$mapper->push(new EloquentMiddleware(new ArrayCache()));
+$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
+$mapper->push(new \JsonMapper\EloquentMiddleware\EloquentMiddleware(new \JsonMapper\Cache\ArrayCache()));
 
 $licenses = $mapper->mapArrayFromString($data, new License());
-Collection::make($licenses)->each(fn(License $l) => $l->save());
+\Illuminate\Support\Collection::make($licenses)->each(fn(License $l) => $l->save());
 ```
 
 _This middleware is part of separate repository and need to be installed using `composer require json-mapper/eloquent-middleware`_

@@ -39,11 +39,7 @@ Once you've created your custom middleware, you can add it to the middleware sta
 method, like this:
 
 ```php
-<?php
-
-use JsonMapper\JsonMapperBuilder;
-
-$mapper = JsonMapperBuilder::new()
+$mapper = \JsonMapper\JsonMapperBuilder::new()
     ->withDocBlockAnnotationsMiddleware()
     ->withTypedPropertiesMiddleware()
     ->withMiddleware(new CustomMiddleware())

@@ -11,8 +11,6 @@ _Available since JsonMapper 2.9.0_
 The examples below map onto the following class:
 
 ```php
-<?php
-
 class User
 {
     public string $name;
@@ -21,13 +19,8 @@ class User
 
 ## Using a php named function as callback
 ```php
-<?php
-
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\ValueTransformation;
-
-$middleware = new ValueTransformation('strtolower');
-$mapper = (new JsonMapperFactory())->bestFit();
+$middleware = new \JsonMapper\Middleware\ValueTransformation('strtolower');
+$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $mapper->unshift($middleware);
 $object = new User();
 
@@ -42,12 +35,7 @@ Pass `true` as the second constructor argument to have the property name handed 
 callback alongside the value.
 
 ```php
-<?php
-
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\ValueTransformation;
-
-$middleware = new ValueTransformation(
+$middleware = new \JsonMapper\Middleware\ValueTransformation(
     static function ($key, $value) {
         if ($key === 'name') {
             return \base64_decode($value);
@@ -57,7 +45,7 @@ $middleware = new ValueTransformation(
     },
     true
 );
-$mapper = (new JsonMapperFactory())->bestFit();
+$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $mapper->unshift($middleware);
 $object = new User();
 

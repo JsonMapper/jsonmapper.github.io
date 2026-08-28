@@ -9,14 +9,6 @@ Using the final callback middleware it is possible to invoke a callback because 
 _Available since JsonMapper 0.3.0_
 
 ```php
-<?php
-
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\JsonMapperInterface;
-use JsonMapper\Middleware\FinalCallback;
-use JsonMapper\ValueObjects\PropertyMap;
-use JsonMapper\Wrapper\ObjectWrapper;
-
 class User
 {
     /** @var string */
@@ -28,14 +20,14 @@ class User
     }
 }
 
-$mapper = (new JsonMapperFactory())->default();
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
 
 # Add the callback middleware
-$mapper->push(new FinalCallback(function (
+$mapper->push(new \JsonMapper\Middleware\FinalCallback(function(
     \stdClass $json,
-    ObjectWrapper $object,
-    PropertyMap $map,
-    JsonMapperInterface $mapper
+    \JsonMapper\Wrapper\ObjectWrapper $object,
+    \JsonMapper\ValueObjects\PropertyMap $map,
+    \JsonMapper\JsonMapperInterface $mapper
 ) {
     // Call a method on the object
     $object->getObject()->done();

@@ -16,15 +16,11 @@ _The `StrictScalarCaster` and the `PropertyMapperBuilder` used below are availab
 ```php
 <?php
 
-use JsonMapper\Builders\PropertyMapperBuilder;
-use JsonMapper\Helpers\StrictScalarCaster;
-use JsonMapper\JsonMapperBuilder;
-
-$propertyMapper = PropertyMapperBuilder::new()
-    ->withScalarCaster(new StrictScalarCaster())
+$propertyMapper = \JsonMapper\Builders\PropertyMapperBuilder::new()
+    ->withScalarCaster(new \JsonMapper\Helpers\StrictScalarCaster())
     ->build();
 
-$mapper = JsonMapperBuilder::new()
+$mapper = \JsonMapper\JsonMapperBuilder::new()
     ->withPropertyMapper($propertyMapper)
     ->withDocBlockAnnotationsMiddleware()
     ->withTypedPropertiesMiddleware()

@@ -16,10 +16,9 @@ _Available since JsonMapper 0.3.0_
 <?php
 
 use App\Api\Joke\Response;
-use JsonMapper\JsonMapperFactory;
 
 # The namespace resolver middleware is included in the default and best fit of JsonMapper.
-$mapper = (new JsonMapperFactory())->default();
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
 
 $object = new Response();
 $jsonString = file_get_contents('https://api.chucknorris.io/jokes/search?query=programming');

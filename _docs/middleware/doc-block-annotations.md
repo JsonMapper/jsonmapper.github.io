@@ -30,10 +30,8 @@ The following `@var` annotation formats are supported:
 ```php
 <?php
 
-use JsonMapper\JsonMapperFactory;
-
 # The Doc Block middleware is included in the default and best fit of JsonMapper.
-$mapper = (new JsonMapperFactory())->default();
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
 
 $object = new Joke();
 $jsonString = file_get_contents('https://official-joke-api.appspot.com/jokes/random');

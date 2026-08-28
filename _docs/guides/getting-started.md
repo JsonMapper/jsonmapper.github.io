@@ -35,13 +35,11 @@ Mapping the JSON to the PHP object is now very simple with the use of JsonMapper
 ```php
 <?php
 
-use JsonMapper\JsonMapperFactory;
-
 // Fetch the data from the api endpoint
 $data = file_get_contents('https://api.chucknorris.io/jokes/random');
 
 // Create a mapper for a Chuck Norris fact
-$mapper = (new JsonMapperFactory())->bestFit();
+$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $chuckNorrisFact = new ChuckNorrisFact();
 
 // Map the data using JsonMapper

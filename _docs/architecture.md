@@ -13,32 +13,20 @@ individual project.
 This also allows for custom middleware to meet edge cases not offered in the middleware that is par of JsonMapper.
 
 ```php
-<?php
-
-use JsonMapper\Cache\ArrayCache;
-use JsonMapper\Handler\PropertyMapper;
-use JsonMapper\JsonMapper;
-use JsonMapper\JsonMapperInterface;
-use JsonMapper\Middleware\AbstractMiddleware;
-use JsonMapper\Middleware\DocBlockAnnotations;
-use JsonMapper\Middleware\NamespaceResolver;
-use JsonMapper\ValueObjects\PropertyMap;
-use JsonMapper\Wrapper\ObjectWrapper;
-
-$cache = new ArrayCache();
-$mapper = new JsonMapper(new PropertyMapper());
+$cache = new \JsonMapper\Cache\ArrayCache();
+$mapper = new \JsonMapper\JsonMapper(new \JsonMapper\Handler\PropertyMapper());
 
 /* Push included middleware onto the mapper */
-$mapper->push(new DocBlockAnnotations($cache));
-$mapper->push(new NamespaceResolver($cache));
+$mapper->push(new \JsonMapper\Middleware\DocBlockAnnotations($cache));
+$mapper->push(new \JsonMapper\Middleware\NamespaceResolver($cache));
 
 /* Add custom middleware */
-$mapper->push(new class extends AbstractMiddleware {
+$mapper->push(new class extends \JsonMapper\Middleware\AbstractMiddleware {
     public function handle(
         \stdClass $json,
-        ObjectWrapper $object,
-        PropertyMap $map,
-        JsonMapperInterface $mapper
+        \JsonMapper\Wrapper\ObjectWrapper $object,
+        \JsonMapper\ValueObjects\PropertyMap $map,
+        \JsonMapper\JsonMapperInterface $mapper
     ): void {
         /* Custom logic here */
     }
@@ -46,4 +34,4 @@ $mapper->push(new class extends AbstractMiddleware {
 ```
 
 ## Supported PHP versions
-JsonMapper currently supports PHP versions 7.4 and higher. 
+JsonMapper currently supports PHP versions 7.4 and higher.

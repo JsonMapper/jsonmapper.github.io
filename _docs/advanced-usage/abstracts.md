@@ -13,26 +13,19 @@ instance you can use the`\JsonMapper\Handler\FactoryRegistry` which is the secon
 ```php
 <?php
 
-use App\Shapes\AbstractShape;
-use App\Shapes\AbstractShapeWrapper;
-use App\Shapes\ShapeInstanceFactory;
-use JsonMapper\Handler\FactoryRegistry;
-use JsonMapper\Handler\PropertyMapper;
-use JsonMapper\JsonMapperBuilder;
-
-$nonInstantiableTypeResolver = new FactoryRegistry();
+$nonInstantiableTypeResolver = new \JsonMapper\Handler\FactoryRegistry();
 $nonInstantiableTypeResolver->addFactory(
-    AbstractShape::class,
-    new ShapeInstanceFactory()
+    \App\Shapes\AbstractShape::class,
+    new \App\Shapes\ShapeInstanceFactory()
 );
 
-$mapper = JsonMapperBuilder::new()
-    ->withPropertyMapper(new PropertyMapper(null, $nonInstantiableTypeResolver))
+$mapper = \JsonMapper\JsonMapperBuilder::new()
+    ->withPropertyMapper(new \JsonMapper\Handler\PropertyMapper(null, $nonInstantiableTypeResolver))
     ->withDocBlockAnnotationsMiddleware()
     ->withNamespaceResolverMiddleware()
     ->build();
 
-$object = new AbstractShapeWrapper();
+$object = new \App\Shapes\AbstractShapeWrapper();
 $mapper->mapObjectFromString('{"shape": {"type": "square", "width": 5, "length": 6}}', $object);
 ```
 

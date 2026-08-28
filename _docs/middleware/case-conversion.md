@@ -10,24 +10,18 @@ The case conversion middleware can map from a specific text notation to another 
 _Available since JsonMapper 0.3.0_
 
 ```php
-<?php
-
-use JsonMapper\Enums\TextNotation;
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\CaseConversion;
-
 class User
 {
     /** @var string */
     public $name;
 }
 
-$mapper = (new JsonMapperFactory())->default();
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
 
 # Add the middleware to convert from studly caps to camel case
-$mapper->push(new CaseConversion(
-    TextNotation::STUDLY_CAPS(),
-    TextNotation::CAMEL_CASE()
+$mapper->push(new \JsonMapper\Middleware\CaseConversion(
+    \JsonMapper\Enums\TextNotation::STUDLY_CAPS(),
+    \JsonMapper\Enums\TextNotation::CAMEL_CASE()
 ));
 
 $object = new User();

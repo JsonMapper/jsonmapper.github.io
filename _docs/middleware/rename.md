@@ -11,22 +11,17 @@ naming convention as the JSON API exposes.
 _Available since JsonMapper 2.2.0_
 
 ```php
-<?php
-
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\Rename\Rename;
-
 class User
 {
     public int $id;
     public string $name;
 }
 
-$rename = new Rename();
+$rename = new \JsonMapper\Middleware\Rename\Rename();
 $rename->addMapping(User::class, 'Full-Name', 'name');
 $rename->addMapping(User::class, 'Identifier', 'id');
 
-$mapper = (new JsonMapperFactory())->bestFit();
+$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $mapper->unshift($rename);
 $object = new User();
 

@@ -1,12 +1,10 @@
 ```php
-use JsonMapper\JsonMapperBuilder;
-
 class User
 {
     public string $name;
 }
 
-$mapper = JsonMapperBuilder::new()
+$mapper = \JsonMapper\JsonMapperBuilder::new()
     ->withDocBlockAnnotationsMiddleware()
     ->withTypedPropertiesMiddleware()
     ->build();

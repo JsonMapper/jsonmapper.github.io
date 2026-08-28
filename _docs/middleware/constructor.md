@@ -11,12 +11,6 @@ can be combined with the readonly properties introduced with PHP 8.1.
 _Available since JsonMapper 2.14.0_
 
 ```php
-<?php
-
-use JsonMapper\Handler\FactoryRegistry;
-use JsonMapper\Handler\PropertyMapper;
-use JsonMapper\JsonMapperBuilder;
-
 class User
 {
     public function __construct(
@@ -24,11 +18,11 @@ class User
     ) {}
 }
 
-$factoryRegistry = new FactoryRegistry();
-$mapper = JsonMapperBuilder::new()
+$factoryRegistry = new \JsonMapper\Handler\FactoryRegistry();
+$mapper = \JsonMapper\JsonMapperBuilder::new()
     ->withDocBlockAnnotationsMiddleware()
     ->withObjectConstructorMiddleware($factoryRegistry)
-    ->withPropertyMapper(new PropertyMapper($factoryRegistry))
+    ->withPropertyMapper(new \JsonMapper\Handler\PropertyMapper($factoryRegistry))
     ->build();
 
 $object = $mapper->mapToClassFromString('{ "name": "John Doe" }', User::class);

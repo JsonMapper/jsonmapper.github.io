@@ -11,16 +11,14 @@ offers three methods to create a JsonMapper instance.
 ```php
 <?php
 
-use JsonMapper\JsonMapperFactory;
-
 // Use `default` which offers the most lightweight JsonMapper. It includes the
 // DocBlock annotations and namespace resolver middleware.
-$default = (new JsonMapperFactory())->default();
+$default = (new \JsonMapper\JsonMapperFactory())->default();
 
 // Use `bestFit` to get the JsonMapper that fits best to your PHP runtime
 // version. Since PHP 7.4 is the minimum supported version, this always adds
 // the typed properties middleware on top of the default set.
-$bestFit = (new JsonMapperFactory())->bestFit();
+$bestFit = (new \JsonMapper\JsonMapperFactory())->bestFit();
 ```
 
 Use `create` to build an instance with your own property mapper and your own series of
@@ -30,18 +28,12 @@ least one — building a mapper with an empty middleware chain throws a `Builder
 ```php
 <?php
 
-use JsonMapper\Cache\ArrayCache;
-use JsonMapper\Handler\PropertyMapper;
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\DocBlockAnnotations;
-use JsonMapper\Middleware\NamespaceResolver;
+$cache = new \JsonMapper\Cache\ArrayCache();
 
-$cache = new ArrayCache();
-
-$custom = (new JsonMapperFactory())->create(
-    new PropertyMapper(),
-    new DocBlockAnnotations($cache),
-    new NamespaceResolver($cache)
+$custom = (new \JsonMapper\JsonMapperFactory())->create(
+    new \JsonMapper\Handler\PropertyMapper(),
+    new \JsonMapper\Middleware\DocBlockAnnotations($cache),
+    new \JsonMapper\Middleware\NamespaceResolver($cache)
 );
 ```
 
@@ -53,19 +45,14 @@ an example that shows how you can create a JsonMapper instance using the builder
 ```php
 <?php
 
-use JsonMapper\Builders\PropertyMapperBuilder;
-use JsonMapper\Cache\ArrayCache;
-use JsonMapper\Helpers\StrictScalarCaster;
-use JsonMapper\JsonMapperBuilder;
-
-$propertyMapper = PropertyMapperBuilder::new()
-    ->withScalarCaster(new StrictScalarCaster())
+$propertyMapper = \JsonMapper\Builders\PropertyMapperBuilder::new()
+    ->withScalarCaster(new \JsonMapper\Helpers\StrictScalarCaster())
     ->build();
 
-$mapper = JsonMapperBuilder::new()
+$mapper = \JsonMapper\JsonMapperBuilder::new()
     ->withJsonMapperClassName(YourExtendedJsonMapper::class)
     ->withPropertyMapper($propertyMapper)
-    ->withDefaultCache(new ArrayCache())
+    ->withDefaultCache(new \JsonMapper\Cache\ArrayCache())
     ->withDocBlockAnnotationsMiddleware()
     ->build();
 ```

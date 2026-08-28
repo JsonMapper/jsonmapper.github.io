@@ -17,10 +17,8 @@ _Available since JsonMapper 0.1.0_
 ```php
 <?php
 
-use JsonMapper\JsonMapperFactory;
-
 # The TypedProperties middleware is included in the best fit of JsonMapper.
-$mapper = (new JsonMapperFactory())->bestFit();
+$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 
 $object = new Joke();
 $jsonString = file_get_contents('https://official-joke-api.appspot.com/jokes/random');

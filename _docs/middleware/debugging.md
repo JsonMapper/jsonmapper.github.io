@@ -10,25 +10,18 @@ The state of the json and object inputs as well as the property map will be logg
 _Available since JsonMapper 1.0.0_
 
 ```php
-<?php
-
-use JsonMapper\JsonMapperFactory;
-use JsonMapper\Middleware\Debugger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-
 class User
 {
     /** @var string */
     public $name;
 }
 
-$mapper = (new JsonMapperFactory())->default();
+$mapper = (new \JsonMapper\JsonMapperFactory())->default();
 
 # Add the debug middleware with any PSR-3 compliant logger
-$logger = new Logger('json-mapper');
-$logger->pushHandler(new StreamHandler('php://stdout'));
-$mapper->push(new Debugger($logger));
+$logger = new \Monolog\Logger('json-mapper');
+$logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout'));
+$mapper->push(new \JsonMapper\Middleware\Debugger($logger));
 
 $object = new User();
 $mapper->mapObjectFromString('{ "name": "John Doe" }', $object);
