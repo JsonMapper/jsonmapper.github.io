@@ -1,0 +1,18 @@
+# Static analysis of the documentation's PHP examples against the real package.
+#
+# The paths are supplied on the command line by check-code-examples.php, which
+# extracts the code blocks first. Reported line numbers are the markdown line
+# numbers: the extractor blanks out everything that is not code rather than
+# collapsing it.
+parameters:
+    level: 5
+
+    scanFiles:
+        - stubs/placeholders.php
+
+    ignoreErrors:
+        # Examples routinely assign something to show the shape of the wiring
+        # without going on to use it — the Symfony page's constructor injection
+        # is the whole point of that snippet. This can never indicate a
+        # documentation defect.
+        - identifier: property.onlyWritten

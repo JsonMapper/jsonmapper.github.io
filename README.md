@@ -76,16 +76,34 @@ have. Three lines of `class User { public string $name; }` is enough.
 x.y.z_` under the page intro. The site documents v2, so "available since 0.3.0" answers a question
 nobody has.
 
-`.github/workflows/lint-examples.yml` parses every ` ```php ` block on each pull request and reports
-failures against the markdown file and line. Run it locally with:
+`.github/workflows/lint-examples.yml` checks every ` ```php ` block on each pull request, in two
+passes. Run them locally with:
 
 ```shell
-$PHP .github/scripts/lint-code-examples.php
+$PHP .github/scripts/lint-code-examples.php                              # 1. parse
+$PHP .github/scripts/extract-code-examples.php .phpstan-doc-examples     # 2. analyse
+$PHP vendor/bin/phpstan analyse -c .github/phpstan.neon --memory-limit=512M .phpstan-doc-examples
 ```
 
-It is a parse check, not proof an example works — running the examples would mean installing the
-package here and pinning a version. Before changing a snippet, check it against a real checkout of
-JsonMapper, and make the inline `// "John Doe"` comments the output it genuinely produces.
+The first is a parse check needing only a PHP binary. The second runs PHPStan against the real
+`json-mapper/json-mapper`, which is a dev dependency here for exactly that reason, and is what catches
+a call to a method that does not exist, a missing constructor argument, or an argument of the wrong
+type. Both report against the markdown file and line: the extractor blanks out everything that is not
+code rather than collapsing it, so an analysed file's line numbers are the page's line numbers.
+
+Examples are extracted **per page**, since a page routinely defines a class in one fence and maps onto
+it in the next, and each page is given its own namespace so that the `User` several pages define does
+not collide. A fence that declares its own `namespace` is analysed as its own file.
+
+Classes the examples borrow from the reader's imagination (`\App\…`) or from packages that cannot be
+installed alongside Hyde are declared in `.github/stubs/placeholders.php`. Prefer a real dev dependency
+over a stub where the two can coexist — `json-mapper/laravel-package` and `monolog/monolog` are
+installed for this reason, so those pages are checked against the genuine classes.
+
+Neither pass runs the examples, so a snippet that is valid and well-typed but throws at run time still
+gets through — `(new JsonMapperFactory())->create()` with no middleware is the case that motivated
+this. Before changing a snippet, check it against a real checkout of JsonMapper and make the inline
+`// "John Doe"` comments the output it genuinely produces.
 
 ## Deployment
 
