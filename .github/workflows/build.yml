@@ -100,8 +100,12 @@ jobs:
 
           # Code blocks must come back highlighted. Torchlight failing open, whether
           # from a missing secret or an API outage, is otherwise invisible.
-          if ! grep -q 'class="torchlight' _site/docs/setup.html; then
-            echo "::error::code blocks are not highlighted; is the TORCHLIGHT_TOKEN secret set?"
+          # Assert the user-visible outcome, not a class name: Torchlight marks the
+          # block with data-lang and colours each token with an inline style. Note
+          # it emits single-quoted attributes, so do not grep for class="torchlight".
+          colours=$(grep -o 'style="color:' _site/docs/setup.html | wc -l | tr -d ' ')
+          if ! grep -q 'data-lang=' _site/docs/setup.html || [ "$colours" -lt 10 ]; then
+            echo "::error::code blocks are not highlighted (found $colours coloured tokens); is the TORCHLIGHT_TOKEN secret set?"
             exit 1
           fi
 
