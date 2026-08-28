@@ -260,7 +260,10 @@ return [
     ]),
 
     // Add any extra HTML to include before the closing <body> tag
-    'scripts' => '',
+    //
+    // Hyde ships no copy button for code blocks, so this restores the one the
+    // Jekyll site had. Root absolute for the same reason as the head hook above.
+    'scripts' => '<script src="/media/copy-code.js" defer></script>',
 
     /*
     |--------------------------------------------------------------------------

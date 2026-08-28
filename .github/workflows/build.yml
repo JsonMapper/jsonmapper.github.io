@@ -48,8 +48,13 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --prefer-dist --no-progress --no-interaction
 
+      # Torchlight highlights code blocks through its API at build time. Without
+      # the token the build still succeeds, but every code block ships as plain
+      # text, so the verification step below treats that as a failure.
       - name: Build the site
         run: php hyde build --no-interaction
+        env:
+          TORCHLIGHT_TOKEN: ${{ secrets.TORCHLIGHT_TOKEN }}
 
       # A failing post-build task does not fail `hyde build`, because
       # runPostBuildTasks() discards task exit codes. The redirects that keep the
@@ -92,6 +97,19 @@ jobs:
           # A redirect must never have replaced a real page with a self-redirect.
           grep -q 'sidebar-navigation' _site/docs/architecture.html \
             || { echo "::error::docs/architecture.html is not a real page"; exit 1; }
+
+          # Code blocks must come back highlighted. Torchlight failing open, whether
+          # from a missing secret or an API outage, is otherwise invisible.
+          if ! grep -q 'class="torchlight' _site/docs/setup.html; then
+            echo "::error::code blocks are not highlighted; is the TORCHLIGHT_TOKEN secret set?"
+            exit 1
+          fi
+
+          # The copy-to-clipboard script must be published and referenced.
+          test -f _site/media/copy-code.js \
+            || { echo "::error::missing _site/media/copy-code.js"; exit 1; }
+          grep -q 'media/copy-code.js' _site/docs/setup.html \
+            || { echo "::error::copy-code.js is not referenced by the pages"; exit 1; }
 
           # Kramdown attribute lists and Liquid tags must not survive into output.
           if grep -rlE '\{%|\{:' _site --include='*.html' | grep -qv 'search'; then
