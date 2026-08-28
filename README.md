@@ -76,6 +76,12 @@ have. Three lines of `class User { public string $name; }` is enough.
 x.y.z_` under the page intro. The site documents v2, so "available since 0.3.0" answers a question
 nobody has.
 
+Do not write the *documented* release into the prose. It is read from the installed
+`json-mapper/json-mapper` by `App\Support\DocumentedVersion` and shown once, at the foot of the
+documentation sidebar, so the version the pages claim to describe is by construction the version their
+examples are checked against. Bumping the dependency updates the site. The deploy installs with
+`--no-dev`, where the package is absent, so the resolver falls back to `composer.lock`.
+
 `.github/workflows/lint-examples.yml` checks every ` ```php ` block on each pull request, in two
 passes. Run them locally with:
 
