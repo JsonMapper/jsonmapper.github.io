@@ -5,3 +5,5 @@
 /.idea/
 /vendor/
 /build/
+/builds/
+.env
