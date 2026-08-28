@@ -30,12 +30,11 @@ You can check the [Setup](/_docs/usage/setup.md) page for more info of the diffe
 
 namespace App\Service;
 
+use Illuminate\Support\Collection;
 use JsonMapper\LaravelPackage\JsonMapperInterface;
 
 class ApiClient
 {
-    private JsonMapperInterface $mapper;
-    
     public function __construct(
         private JsonMapperInterface $mapper
     ) {

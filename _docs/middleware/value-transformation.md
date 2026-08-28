@@ -5,21 +5,48 @@ title: Value Transformation
 # Value Transformation
 
 The value transformation middleware can be used to apply a callback to the JSON value before it is mapped to the class property.
- 
+
+_Available since JsonMapper 2.9.0_
+
+The examples below map onto the following class:
+
+```php
+<?php
+
+class User
+{
+    public string $name;
+}
+```
+
 ## Using a php named function as callback
 ```php
-$middleware = new ValueTransformation('srtolower');
+<?php
+
+use JsonMapper\JsonMapperFactory;
+use JsonMapper\Middleware\ValueTransformation;
+
+$middleware = new ValueTransformation('strtolower');
 $mapper = (new JsonMapperFactory())->bestFit();
 $mapper->unshift($middleware);
 $object = new User();
 
 $mapper->mapObjectFromString('{ "name": "JOHN DOE" }', $object);
 
-echo $object->getName(); // "john doe"
+echo $object->name; // "john doe"
 ```
 
 ## Using a custom callback
+
+Pass `true` as the second constructor argument to have the property name handed to the
+callback alongside the value.
+
 ```php
+<?php
+
+use JsonMapper\JsonMapperFactory;
+use JsonMapper\Middleware\ValueTransformation;
+
 $middleware = new ValueTransformation(
     static function ($key, $value) {
         if ($key === 'name') {
@@ -36,5 +63,5 @@ $object = new User();
 
 $mapper->mapObjectFromString('{ "name": "Sm9obiBEb2U=" }', $object);
 
-echo $object->getName(); // "John Doe"
+echo $object->name; // "John Doe"
 ```

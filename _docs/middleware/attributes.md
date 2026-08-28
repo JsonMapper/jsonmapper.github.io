@@ -6,8 +6,19 @@ title: PHP 8.0 Attributes
 
 The attributes middleware uses the PHP 8.0 attributes to map JSON data from names that do not match the model.
  This way your code doesn't need to follow the same naming convention as the JSON API exposes.
- 
+
+_Available since JsonMapper 1.4.0_
+
 ```php
+<?php
+
+use JsonMapper\Cache\NullCache;
+use JsonMapper\Handler\PropertyMapper;
+use JsonMapper\JsonMapperFactory;
+use JsonMapper\Middleware\Attributes\Attributes;
+use JsonMapper\Middleware\Attributes\MapFrom;
+use JsonMapper\Middleware\TypedProperties;
+
 class User
 {
     #[MapFrom("Identifier")]
@@ -26,6 +37,6 @@ $object = new User();
 
 $mapper->mapObjectFromString('{ "UserName": "John Doe", "Identifier": 42 }', $object);
 
-echo $object->getId(); // 42
-echo $object->getName(); // "John Doe"
+echo $object->id; // 42
+echo $object->name; // "John Doe"
 ```

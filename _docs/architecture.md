@@ -13,19 +13,32 @@ individual project.
 This also allows for custom middleware to meet edge cases not offered in the middleware that is par of JsonMapper.
 
 ```php
-$mapper = new \JsonMapper\JsonMapper(new \JsonMapper\Handler\PropertyMapper());
+<?php
+
+use JsonMapper\Cache\ArrayCache;
+use JsonMapper\Handler\PropertyMapper;
+use JsonMapper\JsonMapper;
+use JsonMapper\JsonMapperInterface;
+use JsonMapper\Middleware\AbstractMiddleware;
+use JsonMapper\Middleware\DocBlockAnnotations;
+use JsonMapper\Middleware\NamespaceResolver;
+use JsonMapper\ValueObjects\PropertyMap;
+use JsonMapper\Wrapper\ObjectWrapper;
+
+$cache = new ArrayCache();
+$mapper = new JsonMapper(new PropertyMapper());
 
 /* Push included middleware onto the mapper */
-$mapper->push(new \JsonMapper\Middleware\DocBlockAnnotations());
-$mapper->push(new \JsonMapper\Middleware\NamespaceResolver());
+$mapper->push(new DocBlockAnnotations($cache));
+$mapper->push(new NamespaceResolver($cache));
 
 /* Add custom middleware */
-$mapper->push(new class extends JsonMapper\Middleware\AbstractMiddleware {
+$mapper->push(new class extends AbstractMiddleware {
     public function handle(
         \stdClass $json,
-        JsonMapper\Wrapper\ObjectWrapper $object,
-        JsonMapper\ValueObjects\PropertyMap $map,
-        JsonMapper\JsonMapperInterface $mapper
+        ObjectWrapper $object,
+        PropertyMap $map,
+        JsonMapperInterface $mapper
     ): void {
         /* Custom logic here */
     }
