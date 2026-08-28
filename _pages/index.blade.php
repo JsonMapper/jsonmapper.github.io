@@ -90,7 +90,7 @@
     <header class="jm-accent-rule">
         <div class="jm-shell mx-auto w-full flex items-center justify-between px-6 py-4">
             <a href="{{ Routes::get('index')->getLink() }}" title="{{ config('hyde.name') }}">
-                <img src="{{ Hyde::asset('jsonmapper.png') }}" class="jm-logo dark:hidden"
+                <img src="{{ Hyde::asset('jsonmapper.png') }}" class="jm-logo block dark:hidden"
                      alt="{{ config('hyde.name') }}" width="210" height="85">
                 <img src="{{ Hyde::asset('jsonmapper-light.png') }}" class="jm-logo hidden dark:block"
                      alt="{{ config('hyde.name') }}" width="210" height="85">
