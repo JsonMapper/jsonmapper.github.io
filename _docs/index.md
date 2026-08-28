@@ -12,6 +12,9 @@ own models. These pages cover installing it, the middleware it ships with, and h
 New here? Start with [Getting started](/_docs/guides/getting-started.md), which walks through mapping a
 first response end to end.
 
+These pages describe JsonMapper **2.25.1**, which requires PHP 7.4 or higher. Middleware and builder
+pages carry an "Available since" line naming the release that introduced them.
+
 ## Where to look
 
 - **[Installation](/_docs/usage/installation.md)** and **[Setup](/_docs/usage/setup.md)** — add the
