@@ -76,3 +76,6 @@ statically with `php -S localhost:8000 -t _site`.
 `php hyde build` does not fully empty `_site/` between runs — it removes only top-level `.html`/`.json`
 files plus the media directory. If you are inspecting build output, run `rm -rf _site` first so stale
 pages from an earlier build do not mislead you.
+
+## Sponsoring
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)
