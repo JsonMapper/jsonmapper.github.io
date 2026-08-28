@@ -45,9 +45,6 @@ The example above logs:
     propertyMap: {"properties":{"name":{"name":"name","types":[{"type":"string","isArray":false,"arrayInformation":{"isArray":false,"dimensions":0}}],"visibility":"public","isNullable":false}}}
 ```
 
-How that is rendered depends on your logger and its handlers; only the message and the context are
-supplied by JsonMapper.
-
 The property map is the interesting part, and it is easier to read reformatted. It records the type
 each middleware resolved for every property, which is what to check when a property is silently left
 unset:
