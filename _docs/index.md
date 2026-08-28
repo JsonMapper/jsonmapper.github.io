@@ -1,5 +1,7 @@
 ---
 title: Introduction
+navigation:
+    group: General
 ---
 
 JsonMapper is a powerful open-source package that enables users to map JSON data to PHP classes with ease. It offers a 

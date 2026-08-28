@@ -1,5 +1,7 @@
 ---
 title: Architecture
+navigation:
+    group: General
 ---
 ## Middleware
 The core of JsonMapper is build using the chain of responsibility pattern allowing multiple

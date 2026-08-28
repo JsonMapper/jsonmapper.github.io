@@ -25,13 +25,13 @@ return [
 
     'sidebar' => [
         // The title in the sidebar header
-        'header' => env('SITE_NAME', 'HydePHP').' Docs',
+        'header' => env('SITE_NAME', 'JsonMapper').' Docs',
 
         // When using a grouped sidebar, should the groups be collapsible?
         'collapsible' => true,
 
         // A string of Markdown to show in the footer. Set to `false` to disable.
-        'footer' => '[Back to home page](../)',
+        'footer' => '[JsonMapper on GitHub](https://github.com/JsonMapper/JsonMapper) &middot; [@JsonMapper](https://twitter.com/JsonMapper)',
 
         /*
         |--------------------------------------------------------------------------
@@ -51,9 +51,44 @@ return [
         */
 
         'order' => [
-            'readme',
-            'installation',
-            'getting-started',
+            // This list reproduces the section order of the old Jekyll
+            // _data/menu.yml. Keys are page identifiers (the source path
+            // relative to _docs, without the extension). Groups inherit the
+            // priority of their highest-placed member, so listing the pages
+            // in order also orders the groups.
+
+            // General
+            'index',
+            'architecture',
+
+            // Usage
+            'usage/installation',
+            'usage/setup',
+
+            // Guides
+            'guides/getting-started',
+            'guides/creating-middleware',
+            'guides/laravel-usage',
+            'guides/symfony-usage',
+
+            // Middleware
+            'middleware/typed-properties',
+            'middleware/doc-block-annotations',
+            'middleware/namespace-resolver',
+            'middleware/constructor',
+            'middleware/case-conversion',
+            'middleware/debugging',
+            'middleware/final-callback',
+            'middleware/rename',
+            'middleware/value-transformation',
+            'middleware/attributes',
+            'middleware/laravel-eloquent',
+
+            // Advanced Usage
+            'advanced-usage/performance',
+            'advanced-usage/casting-values',
+            'advanced-usage/interfaces',
+            'advanced-usage/abstracts',
         ],
 
         /*
@@ -67,7 +102,21 @@ return [
         */
 
         'labels' => [
-            \Hyde\Pages\DocumentationPage::homeRouteName() => 'Docs',
+            \Hyde\Pages\DocumentationPage::homeRouteName() => 'Introduction',
+
+            // Group headings, matching the old _data/menu.yml sections.
+            'general' => 'General',
+            'usage' => 'Usage',
+            'guides' => 'Guides',
+            'middleware' => 'Middleware',
+            'advanced-usage' => 'Advanced Usage',
+
+            // Pages whose menu label differed from the page title.
+            'guides/laravel-usage' => 'Laravel Usage',
+            'guides/symfony-usage' => 'Symfony Usage',
+            'middleware/constructor' => 'Constructor support',
+            'middleware/value-transformation' => 'Value transformation',
+            'middleware/attributes' => 'PHP Attributes',
         ],
 
         /*
@@ -108,7 +157,7 @@ return [
     |
     */
 
-    // 'source_file_location_base' => 'https://github.com/<user>/<repo>/<[blob/edit]>/<branch>',
+    'source_file_location_base' => 'https://github.com/JsonMapper/jsonmapper.github.io/blob/main/_docs',
     'edit_source_link_text' => 'Edit Source',
     'edit_source_link_position' => 'footer', // 'header', 'footer', or 'both'
 

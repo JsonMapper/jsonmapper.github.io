@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'name' => env('SITE_NAME', 'HydePHP'),
+    'name' => env('SITE_NAME', 'JsonMapper'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('SITE_URL', 'http://localhost'),
+    'url' => env('SITE_URL', 'https://jsonmapper.net'),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'pretty_urls' => false,
+    'pretty_urls' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
 
     'rss' => [
         // Should the RSS feed be generated?
-        'enabled' => true,
+        'enabled' => false,
 
         // What filename should the RSS file use?
         'filename' => 'feed.xml',
@@ -217,12 +217,21 @@ return [
     */
 
     'meta' => [
-        // Meta::name('author', 'Mr. Hyde'),
-        // Meta::name('twitter:creator', '@HydeFramework'),
-        // Meta::name('description', 'My Hyde Blog'),
-        // Meta::name('keywords', 'Static Sites, Blogs, Documentation'),
+        Meta::name('author', 'JsonMapper'),
+        Meta::name('description', 'Map a JSON response to your PHP object'),
+        Meta::name('keywords', 'PHP, JSON, JsonMapper, mapping, deserialization, middleware'),
         Meta::name('generator', 'HydePHP v'.Hyde\Hyde::version()),
-        Meta::property('site_name', env('SITE_NAME', 'HydePHP')),
+
+        Meta::name('twitter:card', 'summary'),
+        Meta::name('twitter:site', '@JsonMapper'),
+        Meta::name('twitter:creator', '@JsonMapper'),
+        Meta::name('twitter:description', 'Map a JSON response to your PHP object'),
+        Meta::name('twitter:image', 'https://jsonmapper.net/media/jsonmapper-og-twitter.png'),
+
+        Meta::property('site_name', env('SITE_NAME', 'JsonMapper')),
+        Meta::property('type', 'website'),
+        Meta::property('description', 'Map a JSON response to your PHP object'),
+        Meta::property('image', 'https://jsonmapper.net/media/jsonmapper-og-facebook.png'),
     ],
 
     /*
@@ -237,7 +246,18 @@ return [
     */
 
     // Add any extra HTML to include in the <head> tag
-    'head' => '',
+    //
+    // The icon set is emitted here rather than through Meta::link() because that
+    // helper keys elements by their rel attribute, so the two sized rel="icon"
+    // links would silently overwrite each other. Paths are site-root absolute
+    // since this value is rendered verbatim on pages at varying depths.
+    // Hyde links media/favicon.ico by itself, so it is not repeated here.
+    'head' => implode("\n", [
+        '<link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32x32.png">',
+        '<link rel="icon" type="image/png" sizes="16x16" href="/media/favicon-16x16.png">',
+        '<link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png">',
+        '<link rel="manifest" href="/media/site.webmanifest">',
+    ]),
 
     // Add any extra HTML to include before the closing <body> tag
     'scripts' => '',
@@ -255,7 +275,6 @@ return [
     'features' => [
         // Page Modules
         Feature::HtmlPages,
-        Feature::MarkdownPosts,
         Feature::BladePages,
         Feature::MarkdownPages,
         Feature::DocumentationPages,
@@ -317,7 +336,8 @@ return [
     |
     */
 
-    'footer' => 'Site proudly built with [HydePHP](https://github.com/hydephp/hyde) 🎩',
+    'footer' => 'JsonMapper is open source software licensed under the MIT license. '.
+        'Documentation built with [HydePHP](https://hydephp.com).',
 
     /*
     |--------------------------------------------------------------------------
@@ -338,28 +358,29 @@ return [
         // The array key is the page's route key, the value is the priority.
         // Lower values show up first in the menu. The default is 999.
         'order' => [
-            'index' => 0,
-            'posts' => 10,
-            'docs/index' => 100,
+            'docs/index' => 0,
         ],
 
         // In case you want to customize the labels for the menu items, you can do so here.
         // Simply add the route key as the array key, and the label as the value.
         'labels' => [
-            'index' => 'Home',
-            'docs/index' => 'Docs',
+            'docs/index' => 'Documentation',
         ],
 
         // These are the route keys of pages that should not show up in the navigation menu.
         'exclude' => [
             '404',
+            // The site root is only a redirect to /docs/, so it is not a menu item.
+            'index',
         ],
 
         // Any extra links you want to add to the navigation menu can be added here.
         // To get started quickly, you can uncomment the defaults here.
         // See the documentation link above for more information.
         'custom' => [
-            // Navigation::item('https://github.com/hydephp/hyde', 'GitHub', 200),
+            // Nothing here: the documentation layout renders the sidebar rather
+            // than this menu, and every page on this site is a documentation
+            // page. External links belong in docs.sidebar.footer instead.
         ],
 
         // How should pages in subdirectories be displayed in the menu?
