@@ -21,6 +21,12 @@ $rename = new \JsonMapper\Middleware\Rename\Rename();
 $rename->addMapping(User::class, 'Full-Name', 'name');
 $rename->addMapping(User::class, 'Identifier', 'id');
 
+# Or you can pass the mappings straight to the constructor
+$rename = new \JsonMapper\Middleware\Rename\Rename(
+    new \JsonMapper\Middleware\Rename\Mapping(User::class, 'Full-Name', 'name'),
+    new \JsonMapper\Middleware\Rename\Mapping(User::class, 'Identifier', 'id')
+);
+
 $mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $mapper->unshift($rename);
 $object = new User();
@@ -30,6 +36,3 @@ $mapper->mapObjectFromString('{ "Full-Name": "John Doe", "Identifier": 42 }', $o
 echo $object->id; // 42
 echo $object->name; // "John Doe"
 ```
-
-The mappings can also be passed to the constructor as `\JsonMapper\Middleware\Rename\Mapping`
-objects: `new Rename(new Mapping(User::class, 'Full-Name', 'name'))`.
