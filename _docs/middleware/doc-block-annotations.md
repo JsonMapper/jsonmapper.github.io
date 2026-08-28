@@ -11,6 +11,8 @@ The property map is utilised by the PropertyMapper when applying the data from t
 
 _This middleware is part of both the default and best fit factory methods as it provides elementary functionality to JsonMapper_
 
+_Available since JsonMapper 0.1.0_
+
 ## Supported docblock types
 
 The following `@var` annotation formats are supported:
@@ -28,8 +30,10 @@ The following `@var` annotation formats are supported:
 ```php
 <?php
 
+use JsonMapper\JsonMapperFactory;
+
 # The Doc Block middleware is included in the default and best fit of JsonMapper.
-$mapper = (new \JsonMapper\JsonMapperFactory())->default();
+$mapper = (new JsonMapperFactory())->default();
 
 $object = new Joke();
 $jsonString = file_get_contents('https://official-joke-api.appspot.com/jokes/random');

@@ -9,14 +9,18 @@ for properties.
 Using the reflection information it will determine the property type and amend these results to the property map.
 The property map is utilised by the PropertyMapper when applying the data from the JSON object to the target object. 
 
-_This middleware is part of the best fit factory method as it provides elementary functionality to JsonMapper_ 
+_This middleware is part of the best fit factory method as it provides elementary functionality to JsonMapper_
+
+_Available since JsonMapper 0.1.0_
 
 ## Example
 ```php
 <?php
 
+use JsonMapper\JsonMapperFactory;
+
 # The TypedProperties middleware is included in the best fit of JsonMapper.
-$mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
+$mapper = (new JsonMapperFactory())->bestFit();
 
 $object = new Joke();
 $jsonString = file_get_contents('https://official-joke-api.appspot.com/jokes/random');
