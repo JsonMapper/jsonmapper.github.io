@@ -63,8 +63,12 @@
             padding: .5rem .875rem; background: var(--jm-card-bg);
         }
 
-        /* Hyde's prose styles are scoped to .prose; the sample opts in for spacing. */
-        .jm-code pre { border-radius: .75rem; margin: 0; }
+        /* The container carries Hyde's prose classes, which is what gives the code
+           block its background, padding and horizontal scrolling. Without them
+           Torchlight's dark-theme colours land on the white page background and the
+           lines overflow their container. */
+        .jm-code { max-width: none; }
+        .jm-code pre { margin: 0; }
     </style>
     @endverbatim
 </head>
@@ -115,7 +119,7 @@
             <p class="mb-4 max-w-3xl">
                 With just a few lines of code you can map a JSON string to a PHP class and start working with it right away.
             </p>
-            <div class="jm-code" data-copy-code>
+            <div class="jm-code {{ config('markdown.prose_classes', 'prose dark:prose-invert') }}" data-copy-code>
                 {!! Includes::markdown('home-example') !!}
             </div>
         </section>

@@ -26,13 +26,13 @@
         '  cursor: pointer; box-sizing: border-box;',
         '  color: #e5e7eb; background: rgba(15, 23, 42, .55);',
         '  border: 1px solid rgba(229, 231, 235, .4); border-radius: .5rem;',
-        '  opacity: 0; transition: opacity .2s ease-in-out;',
+        '  opacity: .5; transition: opacity .2s ease-in-out;',
         '}',
         '.code-copy-button svg { width: 1.15rem; height: 1.15rem; }',
         '.code-copy-wrapper:hover .code-copy-button,',
+        '.code-copy-button:hover,',
         '.code-copy-button:focus-visible { opacity: 1; }',
         '.code-copy-button:hover { background: rgba(15, 23, 42, .8); }',
-        '@media (hover: none) { .code-copy-button { opacity: 1; } }',
         '@media print { .code-copy-button { display: none; } }'
     ].join('\n');
 
