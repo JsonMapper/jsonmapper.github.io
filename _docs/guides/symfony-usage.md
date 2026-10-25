@@ -21,7 +21,7 @@ If your application does not use [Symfony Flex](https://symfony.com/doc/current/
 
 return [
     // ...
-    JsonMapper\SymfonyBundle\JsonMapperBundle::class => ['all' => true],
+    \JsonMapper\SymfonyBundle\JsonMapperBundle::class => ['all' => true],
 ];
 ```
 

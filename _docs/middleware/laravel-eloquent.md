@@ -17,8 +17,8 @@ $data = file_get_contents($url);
 $mapper = (new \JsonMapper\JsonMapperFactory())->bestFit();
 $mapper->push(new \JsonMapper\EloquentMiddleware\EloquentMiddleware(new \JsonMapper\Cache\ArrayCache()));
 
-$licenses = $mapper->mapArrayFromString($data, new License());
-\Illuminate\Support\Collection::make($licenses)->each(fn(License $l) => $l->save());
+$licenses = $mapper->mapArrayFromString($data, new \App\Models\License());
+\Illuminate\Support\Collection::make($licenses)->each(fn(\App\Models\License $l) => $l->save());
 ```
 
 _This middleware is part of separate repository and need to be installed using `composer require json-mapper/eloquent-middleware`_

@@ -1,0 +1,81 @@
+name: Check documentation examples
+
+# The package this site documents lives in a different repository, so nothing in
+# the build compiles the examples — a broken snippet renders perfectly and ships
+# broken. That is how the drift reported in #63 went unnoticed: the Setup page
+# called JsonMapperBuilder::create(), which does not exist, and the landing page
+# passed a JSON string to mapToClass(), whose first parameter is a \stdClass.
+#
+# Two passes, cheapest first:
+#
+#   1. A parse check, needing only a PHP binary. Fails in seconds, before the
+#      Composer install, and keeps working if dependency resolution ever breaks.
+#   2. PHPStan against the real json-mapper/json-mapper, which is what catches a
+#      call to a method that does not exist, a missing constructor argument or an
+#      argument of the wrong type. Every defect in #63 except one is caught here.
+#
+# Neither pass runs the examples, so a snippet that is valid and well-typed but
+# throws at run time still gets through. Verify output by hand before changing an
+# example.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-examples-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Parse and analyse the PHP code blocks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Lint the PHP code blocks
+        run: php .github/scripts/lint-code-examples.php
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      # Unlike the deploy workflow this needs the dev dependencies: PHPStan and
+      # the package whose API the examples are checked against.
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Extract the code blocks
+        run: php .github/scripts/extract-code-examples.php .phpstan-doc-examples
+
+      # PHPStan reports against the extracted files; rewriting the paths puts the
+      # annotations back on the markdown, whose line numbers they already carry.
+      # pipefail keeps PHPStan's exit code through the rewrite.
+      - name: Analyse the code blocks against JsonMapper
+        run: |
+          set -o pipefail
+          vendor/bin/phpstan analyse \
+            --configuration=.github/phpstan.neon \
+            --error-format=github \
+            --no-progress \
+            --memory-limit=512M \
+            .phpstan-doc-examples \
+            | sed -E 's#\.phpstan-doc-examples/##; s#\.md(\.[0-9]+)?\.php#.md#'
